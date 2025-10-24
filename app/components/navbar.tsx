@@ -113,7 +113,7 @@ export default function Navbar() {
                           initial={{ opacity: 0, y: -5 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -5 }}
-                          className="text-xl mt-1 ml-2 bg-gray-50 rounded-lg shadow p-2 space-y-1"
+                          className="text-xl mt-1 ml-2 p-2 space-y-1"
                         >
                           {[
                             "MTVSS",
@@ -126,7 +126,7 @@ export default function Navbar() {
                               href={`#${item
                                 .toLowerCase()
                                 .replace(/\s+/g, "-")}`}
-                              className="block px-4 py-2 hover:bg-gray-100 rounded-md"
+                              className="block px-4 py-2 hover:bg-gray-100"
                             >
                               {item}
                             </Link>
