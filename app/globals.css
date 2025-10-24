@@ -1,1 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
 @import "tailwindcss";
+
+*{
+  font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-weight: 50;
+  font-style: normal;
+}
+
+body {
+  background-color: #FDF7E4;
+  color: #333; /* opcionális szövegszín */
+}
