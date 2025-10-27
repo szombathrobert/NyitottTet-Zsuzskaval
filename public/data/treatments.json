@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "title": "Access Bars",
+    "desc": "Segít a testi-lelki feszültség oldásában, javítja a közérzetet és ellazít.",
+    "img": "/images/treatments/Janki Anikó.jpeg",
+    "link": "/kezelesek/relaxalo-masszazs"
+  },
+  {
+    "id": 2,
+    "title": "Access Bars Gyerekeknek",
+    "desc": "Professzionális testkezelés a bőr feszesítésére és hidratálására.",
+    "img": "/images/treatments/Kezelés1.jpg",
+    "link": "/kezelesek/testkezeles"
+  },
+  {
+    "id": 3,
+    "title": "Access Facelift",
+    "desc": "Finom, természetes hatású kezelés, mely megújítja az arcbőrt.",
+    "img": "/images/treatments/Kezelés2.jpg",
+    "link": "/kezelesek/arcfiatalitas"
+  },
+  {
+    "id": 4,
+    "title": "MTVSS",
+    "desc": "asd",
+    "img": "/images/treatments/Kezelés3.jpg",
+    "link": "/kezelesek/testkezeles"
+  },
+  {
+    "id": 5,
+    "title": "Látás és látásmód helyreállítás",
+    "desc": "asd",
+    "img": "/images/treatments/Kezelés4.jpg",
+    "link": "/kezelesek/testkezeles"
+  },
+  {
+    "id": 6,
+    "title": "Midas és Krőzus",
+    "desc": "asd",
+    "img": "/images/treatments/Kezelés2.jpg",
+    "link": "/kezelesek/testkezeles"
+  },
+  {
+    "id": 7,
+    "title": "Metamorf Masszázs",
+    "desc": "asd",
+    "img": "/images/treatments/Kezelés3.jpg",
+    "link": "/kezelesek/testkezeles"
+  }
+]
