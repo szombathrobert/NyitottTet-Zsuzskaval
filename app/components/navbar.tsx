@@ -3,13 +3,20 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [kezelésekOpen, setKezelésekOpen] = useState(false);
   const [testkezelésekOpen, setTestkezelésekOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
+
+  const testkezelések = [
+    "MTVSS",
+    "Látás és látásmód helyreállítás",
+    "Midas és Krőzus",
+    "Metamorf Masszázs",
+  ];
 
   // --- Kattintás a navbaron kívül ---
   useEffect(() => {
@@ -24,7 +31,7 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // --- Menü bezárásakor csukjon be minden almenüt ---
+  // --- Menü bezárásakor minden almenü csukódjon ---
   useEffect(() => {
     if (!menuOpen) {
       setKezelésekOpen(false);
@@ -32,257 +39,177 @@ export default function Navbar() {
     }
   }, [menuOpen]);
 
-  // --- Kezelések bezárásakor csukja be a testkezeléseket ---
+  // --- Kezelések bezárásakor testkezelések is zárjon ---
   useEffect(() => {
     if (!kezelésekOpen) setTestkezelésekOpen(false);
   }, [kezelésekOpen]);
 
   return (
-    <nav
-      ref={navRef}
-      className="fixed top-0 left-0 w-full bg-[#FFF] backdrop-blur-md shadow-md z-50"
-    >
-      <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
-        {/* LOGO */}
-        <Link href="/" className="text-4xl font-bold text-gray-800">NyitottTér</Link>
+    <nav ref={navRef} className="fixed top-0 left-0 w-full z-50">
 
-        {/* DESKTOP MENU */}
-        <div className="hidden md:flex space-x-8 items-center">
-          <Link
-            href="/"
-            className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors"
-          >
-            Főoldal
-          </Link>
+      {/* DESKTOP */}
+      <div className="hidden md:block">
 
-          <Link
-            href="#rolam"
-            className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors"
-          >
-            Rólam
-          </Link>
+        {/* Fő navbar */}
+        <div className="w-full bg-white backdrop-blur-md shadow-md">
+          <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+            <Link href="/" className="text-4xl font-bold text-gray-800">NyitottTér</Link>
 
-          {/* KEZELÉSEK */}
-          <div className="relative">
-            <button
-              onClick={() => setKezelésekOpen((prev) => !prev)}
-              className="text-2xl flex items-center text-gray-700 hover:text-indigo-600 transition-colors"
-            >
-              Kezelések <ChevronDown className="ml-1 w-4 h-4" />
-            </button>
+            <div className="flex space-x-8 items-center">
+              <Link href="/" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Főoldal</Link>
+              <Link href="#rolam" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Rólam</Link>
 
-            <AnimatePresence>
-              {kezelésekOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -5 }}
-                  className="text-xl absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg p-2 space-y-1"
-                >
-                  <Link
-                    href="#accessbars"
-                    className="text-xl block px-4 py-2 hover:bg-gray-100 rounded-md"
-                  >
-                    Access Bars
-                  </Link>
-                  <Link
-                    href="#accessbars-gyerekeknek"
-                    className="text-xl block px-4 py-2 hover:bg-gray-100 rounded-md"
-                  >
-                    Access Bars gyerekeknek
-                  </Link>
-                  <Link
-                    href="#accessfacelift"
-                    className="text-xl block px-4 py-2 hover:bg-gray-100 rounded-md"
-                  >
-                    Access Facelift
-                  </Link>
-
-                  {/* TESTKEZELÉSEK */}
-                  <div className="relative">
-                    <button
-                      onClick={() => setTestkezelésekOpen((prev) => !prev)}
-                      className="text-xl w-full flex justify-between items-center px-4 py-2 hover:bg-gray-100 rounded-md"
-                    >
-                      Testkezelések <ChevronDown className="w-4 h-4" />
-                    </button>
-
-                    <AnimatePresence>
-                      {testkezelésekOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, y: -5 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -5 }}
-                          className="text-xl mt-1 ml-2 p-2 space-y-1"
-                        >
-                          {[
-                            "MTVSS",
-                            "Látás és látásmód helyreállítás",
-                            "Midas és Krőzus",
-                            "Metamorf Masszázs",
-                          ].map((item) => (
-                            <Link
-                              key={item}
-                              href={`#${item
-                                .toLowerCase()
-                                .replace(/\s+/g, "-")}`}
-                              className="block px-4 py-2 hover:bg-gray-100"
-                            >
-                              {item}
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          <Link
-            href="#arak"
-            className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors"
-          >
-            Árak
-          </Link>
-
-          <Link
-            href="#kapcsolat"
-            className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors"
-          >
-            Kapcsolat
-          </Link>
-        </div>
-
-        {/* MOBILE MENU BUTTON */}
-        <button
-          className="md:hidden p-2 rounded-md hover:bg-gray-100"
-          onClick={() => setMenuOpen((prev) => !prev)}
-        >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* MOBILE MENU */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="md:hidden bg-white/90 text-xl backdrop-blur-md shadow-md px-6 py-4 space-y-3"
-          >
-            <Link
-              href="#fooldal"
-              className="block text-gray-700 hover:text-indigo-600"
-            >
-              Főoldal
-            </Link>
-
-            <Link
-              href="#rolam"
-              className="block text-gray-700 hover:text-indigo-600"
-            >
-              Rólam
-            </Link>
-
-            {/* KEZELÉSEK */}
-            <div>
               <button
-                onClick={() => setKezelésekOpen((prev) => !prev)}
-                className="w-full flex justify-between items-center text-gray-700 hover:text-indigo-600"
+                onClick={() => setKezelésekOpen(prev => !prev)}
+                className="text-2xl flex items-center text-gray-700 hover:text-indigo-600 transition-colors cursor-pointer"
               >
-                Kezelések <ChevronDown className="w-4 h-4" />
+                Kezelések <ChevronDown className="ml-1 w-4 h-4" />
               </button>
 
-              <AnimatePresence>
-                {kezelésekOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -5 }}
-                    className="mt-2 pl-4 space-y-1"
-                  >
-                    <Link
-                      href="#accessbars"
-                      className="block hover:text-indigo-600"
-                    >
-                      Access Bars
-                    </Link>
-                    <Link
-                      href="#accessbars-gyerekeknek"
-                      className="block hover:text-indigo-600"
-                    >
-                      Access Bars gyerekeknek
-                    </Link>
-                    <Link
-                      href="#accessfacelift"
-                      className="block hover:text-indigo-600"
-                    >
-                      Access Facelift
-                    </Link>
-
-                    {/* TESTKEZELÉSEK MOBILON */}
-                    <div>
-                      <button
-                        onClick={() =>
-                          setTestkezelésekOpen((prev) => !prev)
-                        }
-                        className="flex items-center justify-between w-full hover:text-indigo-600"
-                      >
-                        Testkezelések <ChevronDown className="w-4 h-4" />
-                      </button>
-
-                      <AnimatePresence>
-                        {testkezelésekOpen && (
-                          <motion.div
-                            initial={{ opacity: 0, y: -5 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -5 }}
-                            className="mt-2 pl-4 space-y-1"
-                          >
-                            {[
-                              "MTVSS",
-                              "Látás és látásmód helyreállítás",
-                              "Midas és Krőzus",
-                              "Metamorf Masszázs",
-                            ].map((item) => (
-                              <Link
-                                key={item}
-                                href={`#${item
-                                  .toLowerCase()
-                                  .replace(/\s+/g, "-")}`}
-                                className="block hover:text-indigo-600"
-                              >
-                                {item}
-                              </Link>
-                            ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <Link href="#arak" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Árak</Link>
+              <Link href="#kapcsolat" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Kapcsolat</Link>
             </div>
+          </div>
+        </div>
 
-            <a
-              href="#arak"
-              className="block text-gray-700 hover:text-indigo-600"
+        {/* Kezelések lenyíló sáv */}
+        <AnimatePresence>
+          {kezelésekOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="w-full bg-white backdrop-blur-md shadow-md z-40"
             >
-              Árak
-            </a>
+              <div className="max-w-7xl mx-auto px-6 py-3 flex justify-center gap-8">
+                <Link href="#accessbars" className="text-xl text-gray-700 hover:text-indigo-600">Access Bars</Link>
+                <Link href="#accessbars-gyerekeknek" className="text-xl text-gray-700 hover:text-indigo-600">Access Bars gyerekeknek</Link>
+                <Link href="#accessfacelift" className="text-xl text-gray-700 hover:text-indigo-600">Access Facelift</Link>
 
-            <a
-              href="#kapcsolat"
-              className="block text-gray-700 hover:text-indigo-600"
+                <button
+                  onClick={() => setTestkezelésekOpen(prev => !prev)}
+                  className="text-xl flex items-center text-gray-700 hover:text-indigo-600 cursor-pointer"
+                >
+                  Testkezelések <ChevronDown className="ml-1 w-4 h-4" />
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Testkezelések lenyíló sáv */}
+        <AnimatePresence>
+          {testkezelésekOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="w-full bg-white backdrop-blur-md shadow-md z-30"
             >
-              Kapcsolat
-            </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              <div className="max-w-7xl mx-auto px-6 py-3 flex justify-center gap-8">
+                {testkezelések.map(item => (
+                  <Link
+                    key={item}
+                    href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
+                    className="text-xl text-gray-700 hover:text-indigo-600"
+                  >
+                    {item}
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+      </div>
+
+      {/* MOBILE */}
+      <div className="md:hidden">
+        {/* Fő navbar + hamburger */}
+        <div className="w-full bg-white/90 backdrop-blur-md shadow-md flex justify-between items-center px-6 py-3">
+          <Link href="/" className="text-4xl font-bold text-gray-800">NyitottTér</Link>
+          <button
+            className="p-2 rounded-md hover:bg-gray-100"
+            onClick={() => setMenuOpen(prev => !prev)}
+          >
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobil menü */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="bg-white/90 text-xl backdrop-blur-md shadow-md px-6 py-4 space-y-3"
+            >
+              <Link href="#fooldal" className="block text-gray-700 hover:text-indigo-600">Főoldal</Link>
+              <Link href="#rolam" className="block text-gray-700 hover:text-indigo-600">Rólam</Link>
+
+              {/* Kezelések mobilon */}
+              <div>
+                <button
+                  onClick={() => setKezelésekOpen(prev => !prev)}
+                  className="w-full flex justify-between items-center text-gray-700 hover:text-indigo-600"
+                >
+                  Kezelések <ChevronDown className="w-4 h-4" />
+                </button>
+
+                <AnimatePresence>
+                  {kezelésekOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -5 }}
+                      className="mt-2 pl-4 space-y-1"
+                    >
+                      <Link href="#accessbars" className="block hover:text-indigo-600">Access Bars</Link>
+                      <Link href="#accessbars-gyerekeknek" className="block hover:text-indigo-600">Access Bars gyerekeknek</Link>
+                      <Link href="#accessfacelift" className="block hover:text-indigo-600">Access Facelift</Link>
+
+                      {/* Testkezelések mobilon */}
+                      <div>
+                        <button
+                          onClick={() => setTestkezelésekOpen(prev => !prev)}
+                          className="flex items-center justify-between w-full hover:text-indigo-600"
+                        >
+                          Testkezelések <ChevronDown className="w-4 h-4" />
+                        </button>
+
+                        <AnimatePresence>
+                          {testkezelésekOpen && (
+                            <motion.div
+                              initial={{ opacity: 0, y: -5 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -5 }}
+                              className="mt-2 pl-4 space-y-1"
+                            >
+                              {testkezelések.map(item => (
+                                <Link
+                                  key={item}
+                                  href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
+                                  className="block hover:text-indigo-600"
+                                >
+                                  {item}
+                                </Link>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <Link href="#arak" className="block text-gray-700 hover:text-indigo-600">Árak</Link>
+              <Link href="#kapcsolat" className="block text-gray-700 hover:text-indigo-600">Kapcsolat</Link>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </nav>
   );
 }

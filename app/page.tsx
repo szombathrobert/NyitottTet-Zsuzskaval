@@ -2,6 +2,8 @@ import React from 'react'
 import Navbar from './components/navbar'
 import Banner from './components/banner'
 import About from './components/about'
+import Contact from './components/contact'
+import Footer from './components/footer'
 
 const home = () => {
   return (
@@ -9,6 +11,8 @@ const home = () => {
       <Navbar/>
       <Banner/>
       <About/>
+      <Contact/>
+      <Footer/>
     </div>
   )
 }
