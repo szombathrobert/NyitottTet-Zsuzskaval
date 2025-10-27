@@ -11,7 +11,6 @@ import EventsSection from './components/EventsSection'
 const home = () => {
   return (
     <div>
-      <Navbar/>
       <Banner/>
       <About/>
       <Contact/>

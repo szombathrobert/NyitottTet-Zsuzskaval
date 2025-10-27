@@ -1,0 +1,77 @@
+{
+    "id": 1,
+    "title": "Access Bars® Kezelés Gyerekeknek",
+    "slug": "access-bars-gyerekeknek",
+    "shortDescription": "Rövid leírás az Access Bars kezelésről.",
+    "fullDescription": [
+      {
+        "heading": "A mai gyerekekre rengeteg inger, elvárás és stressz hat. Sokuk nehezen tud megnyugodni, fókuszálni vagy kifejezni magát. Az Access Bars kezelés segíthet lecsendesíteni az idegrendszert, és könnyedséget hoz az elmébe és a testbe."
+      },
+      {
+        "first_section_heading": "A kezelés ideális azoknak a gyerekeknek, akik…",
+        "first_bullet": "sokszor nyugtalan, feszült vagy fáradt,",
+        "second_bullet": "nehezen alszik el vagy gyakran ébred éjszaka,",
+        "third_bullet": "nehézséget él meg az iskolában (pl. koncentráció, önbizalom, teljesítmény),",
+        "fourth_bullet": "érzelmileg érzékeny, gyorsan reagál a környezet változásaira,",
+        "fifth_bullet": "gyakran szorong, fél, vagy túlzottan alkalmazkodik másokhoz,",
+        "sixth_bullet": "nehézsége van a beilleszkedéssel vagy a kommunikációval,",
+        "seventh_bullet": "túl sok inger éri és nehezen tud megnyugodni",
+        "first_section_desc": "Ezeknél a gyerekeknél az Access Bars kezelés segíthet kiegyensúlyozni az idegrendszert, és visszaállítani a belső nyugalmat."
+      },
+      {
+        "second_section_heading": "Leggyakrabban tapasztalt hatások:",
+        "second_section_first_bullet": "mély megnyugvás, jobb alvás,",
+        "second_section_second_bullet": "csökkenő szorongás és feszültség,",
+        "second_section_third_bullet": "csökkenő viselkedési problémák,",
+        "second_section_fourth_bullet": "könnyebb koncentráció és figyelem,",
+        "second_section_fifth_bullet": "jobb viselkedés- és érzelemszabályozás,",
+        "second_section_sixth_bullet": "nagyobb önbizalom és nyitottság,",
+        "second_section_seventh_bullet": "több öröm, könnyedség a mindennapokban.",
+        "second_section_desc1": "A „barok” futtatása után a gyerekek boldogabbak, vidámabbak, jobban érzik magukat, jobban teljesítenek az iskolában és otthon.",
+        "second_section_desc2": "A gyerekeknél ezek a változások gyakran gyorsan és természetesen történnek, hiszen ők még nem építettek annyi mentális ellenállást, mint a felnőttek."
+      },
+      {
+        "third_section_heading": "Különösen ajánlott az alábbi gyerekeknek:",
+        "third_section_first_type": "ADD (figyelemhiányos gyerekek)",
+        "third_section_first_type_first_bullet": "nehezen tudnak hosszabb ideig egy dologra figyelni,",
+        "third_section_first_type_second_bullet": "gyakran „álmodozók”, szétszórtak, elvesznek a gondolataikban,",
+        "third_section_first_type_third_bullet": "Access Bars után sokszor nyugodtabbak, jelenlévőbbek, könnyebben fókuszálnak."
+      },
+      {
+        "fourth_section_second_type": "ADHD (hiperaktív, impulzív gyerekek)",
+        "fourth_section_second_type_first_bullet": "folyamatos mozgásban vannak, nehezen tudnak leülni,",
+        "fourth_section_second_type_second_bullet": "erős érzelmi reakcióik vannak, nehezen kezelik a frusztrációt,",
+        "fourth_section_second_type_third_bullet": "a kezelés után gyakran csökken a belső feszültség, könnyebben nyugszanak meg, és jobb az alvásuk."
+      },
+      {
+        "third_section_third_type": "Autizmus spektrumzavarral élő gyerekek",
+        "third_section_third_type_first_bullet": "érzékenyek a fényekre, hangokra, érintésekre,",
+        "third_section_third_type_second_bullet": "nehezen kommunikálnak vagy kapcsolódnak másokhoz,",
+        "third_section_third_type_third_bullet": "az Access Bars enyhítheti az érzékszervi túlterhelést, segíthet nyugalmat és biztonságérzetet adni,",
+        "third_section_third_type_fourth_bullet": "sok szülő arról számol be, hogy a gyermekük nyitottabbá, közvetlenebbé, kommunikatívabbá vált"
+      },
+      {
+        "third_section_fourth_type": "Érzelmileg érzékeny, empatikus gyerekek",
+        "third_section_fourth_type_first_bullet": "hajlamosak „átvenni” mások érzéseit,",
+        "third_section_fourth_type_second_bullet": "könnyen kibillennek érzelmileg,",
+        "third_section_fourth_type_third_bullet": "Az Access Bars segíthet megtartani az energetikai egyensúlyt, hogy ne merüljenek ki olyan gyorsan."
+      },
+            {
+        "third_section_fifth_type": "Tanulási nehézségekkel küzdő gyerekek",
+        "third_section_fifth_type_first_bullet": "nehezen tudnak koncentrálni, memorizálni,",
+        "third_section_fifth_type_second_bullet": "stresszesek vizsga, felelés vagy iskola miatt,",
+        "third_section_fifth_type_third_bullet": "Az Access Bars ellazítja az idegrendszert, így a tanulás könnyebbé és hatékonyabbá válhat"
+      },
+            {
+        "fourth_section_heading": "Hogyan zajlik egy kezelés gyerekeknek?",
+        "fourth_section_desc": "Meg kell említeni, hogy a gyerekeknél sokkal gyorsabb a folyamat. Gyakran ők maguk érzékelik, hogy a kezelés közben mikor “van készen” az adott pont, és mikor mehetünk tovább egy másikra. A csecsemők még ennél is gyorsabbak!",
+        "fourth_section_type": "A gyerekeknél a kezelés rövidebb ideig tart, általában 20–30 perc között. A gyermek közben:",
+        "fourth_section_first_bullet": "ülhet, fekhet vagy akár játszhat is,",
+        "fourth_section_second_bullet": "nincs kényszer, nincs elvárás,",
+        "fourth_section_third_bullet": "a kezelő egyszerűen gyengéden érinti a Bars pontokat.",
+        "fourth_section_ending": "Sok gyerek annyira ellazul, hogy el is szenderedik közben."
+      }
+    ],
+    "img": "/images/treatments/access-bars.jpg",
+    "link": "/kezelesek/access-bars"
+  }

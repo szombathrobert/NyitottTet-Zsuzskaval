@@ -1,14 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
 @import "tailwindcss";
 
-*{
+/* Általános stílus */
+* {
   font-family: "Caveat", cursive;
   font-optical-sizing: auto;
-  font-weight: 50;
+  font-weight: 500; /* 50 helyett 500 — a Caveat-nál ez a normál súly */
   font-style: normal;
 }
 
+/* Alap háttér + szöveg */
 body {
   background-color: #FDF7E4;
-  color: #333; /* opcionális szövegszín */
+  color: #333;
+  list-style: none; /* Itt tiltjuk le alapból a bulletöket */
+}
+
+/* Csak az UL-ben engedélyezzük újra */
+ul {
+  list-style: disc;
+  padding-left: 1.5rem; /* Kicsit beljebb húzva, hogy látszódjon a bullet */
 }

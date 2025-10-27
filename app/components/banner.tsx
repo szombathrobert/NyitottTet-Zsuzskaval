@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function HeroBanner() {
   return (
-    <section className="relative w-full h-[100vh] md:h-[100vh] overflow-hidden">
+    <section className="relative w-full h-screen md:h-screen overflow-hidden">
       {/* Háttérkép – eltolva balra */}
       <Image
         src="/banner-bg.webp"
@@ -15,7 +15,7 @@ export default function HeroBanner() {
       />
 
       {/* Szürkés overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-gray-800/40 to-black/50"></div>
+      <div className="absolute inset-0 bg-linear-to-b from-black/40 via-gray-800/40 to-black/50"></div>
 
       {/* Szöveg */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-6">

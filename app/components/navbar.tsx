@@ -66,8 +66,8 @@ export default function Navbar() {
                 Kezelések <ChevronDown className="ml-1 w-4 h-4" />
               </button>
 
-              <Link href="#arak" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Árak</Link>
-              <Link href="#contact" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Kapcsolat</Link>
+              <Link href="/arak" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Árak</Link>
+              <Link href="/contact" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Kapcsolat</Link>
             </div>
           </div>
         </div>
@@ -82,9 +82,9 @@ export default function Navbar() {
               className="w-full bg-white backdrop-blur-md shadow-md z-40"
             >
               <div className="max-w-7xl mx-auto px-6 py-3 flex justify-center gap-8">
-                <Link href="#accessbars" className="text-xl text-gray-700 hover:text-indigo-600">Access Bars</Link>
-                <Link href="#accessbars-gyerekeknek" className="text-xl text-gray-700 hover:text-indigo-600">Access Bars gyerekeknek</Link>
-                <Link href="#accessfacelift" className="text-xl text-gray-700 hover:text-indigo-600">Access Facelift</Link>
+                <Link href="/kezelesek/access-bars" className="text-xl text-gray-700 hover:text-indigo-600">Access Bars</Link>
+                <Link href="/kezelesek/access-bars-gyerekeknek" className="text-xl text-gray-700 hover:text-indigo-600">Access Bars gyerekeknek</Link>
+                <Link href="/kezelesek/access-facelift" className="text-xl text-gray-700 hover:text-indigo-600">Access Facelift</Link>
 
                 <button
                   onClick={() => setTestkezelésekOpen(prev => !prev)}
@@ -145,7 +145,7 @@ export default function Navbar() {
               exit={{ opacity: 0, y: -10 }}
               className="bg-white/90 text-xl backdrop-blur-md shadow-md px-6 py-4 space-y-3"
             >
-              <Link href="#fooldal" className="block text-gray-700 hover:text-indigo-600">Főoldal</Link>
+              <Link href="/" className="block text-gray-700 hover:text-indigo-600">Főoldal</Link>
               <Link href="#about" className="block text-gray-700 hover:text-indigo-600">Rólam</Link>
 
               {/* Kezelések mobilon */}
@@ -165,9 +165,9 @@ export default function Navbar() {
                       exit={{ opacity: 0, y: -5 }}
                       className="mt-2 pl-4 space-y-1"
                     >
-                      <Link href="#accessbars" className="block hover:text-indigo-600">Access Bars</Link>
-                      <Link href="#accessbars-gyerekeknek" className="block hover:text-indigo-600">Access Bars gyerekeknek</Link>
-                      <Link href="#accessfacelift" className="block hover:text-indigo-600">Access Facelift</Link>
+                      <Link href="/kezelesek/access-bars" className="block hover:text-indigo-600">Access Bars</Link>
+                      <Link href="/kezelesek/access-bars-gyerekeknek" className="block hover:text-indigo-600">Access Bars gyerekeknek</Link>
+                      <Link href="/kezelesek/access-facelift" className="block hover:text-indigo-600">Access Facelift</Link>
 
                       {/* Testkezelések mobilon */}
                       <div>
