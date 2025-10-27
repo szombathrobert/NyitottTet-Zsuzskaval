@@ -1,34 +1,51 @@
 "use client";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
-export default function Banner() {
+export default function HeroBanner() {
   return (
-    <section className="w-full py-10">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 mt-20">
+    <section className="relative w-full h-[100vh] md:h-[100vh] overflow-hidden">
+      {/* Háttérkép – eltolva balra */}
+      <Image
+        src="/banner-bg.webp"
+        alt="NyitottTér Banner"
+        fill
+        className="object-cover object-[30%_center]" // 🔹 eltolás balra
+        priority
+      />
 
-        {/* Bal oldal - kép */}
-        <div className="md:w-1/2 w-full flex justify-center">
-          <div className="relative w-120 h-120 md:w-150 md:h-150 rounded-3xl">
-            <Image
-              src="/zsuzska.jpg" // public mappában legyen a kép
-              alt="Zsuzska portré"
-              fill
-              className="object-contain" // object-contain biztosítja, hogy a teljes kép látszódjon
-              priority
-            />
-          </div>
-        </div>
+      {/* Szürkés overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-gray-800/40 to-black/50"></div>
 
-        {/* Jobb oldal - szöveg */}
-        <div className="md:w-1/2 w-full flex flex-col justify-center items-center md:items-start text-center md:text-left px-4">
-          <h1 className="text-3xl md:text-6xl font-bold mb-3 text-gray-800">
-            NyitottTér – Zsuzskával
-          </h1>
-          <p className="text-xl italic text-gray-600">
-            "Engedd, hogy a világod kitáruljon — minden pillanat egy választás!"
-          </p>
-        </div>
+      {/* Szöveg */}
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-6">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-xl"
+        >
+          NyitottTér – Zsuzskával
+        </motion.h1>
 
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+          className="text-lg md:text-xl max-w-2xl mb-6 drop-shadow-md text-gray-200"
+        >
+          „Engedd, hogy a világod kitáruljon — minden pillanat egy választás!”
+        </motion.p>
+
+        <motion.a
+          href="#treatments"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="bg-white/10 backdrop-blur-md border border-white/30 hover:bg-white/20 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition-all"
+        >
+          Fedezd fel a kezeléseket
+        </motion.a>
       </div>
     </section>
   );

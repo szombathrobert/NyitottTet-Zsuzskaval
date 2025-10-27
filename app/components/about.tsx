@@ -2,7 +2,7 @@
 
 export default function About() {
   return (
-    <section className="w-full py-16 mt-25">
+    <section className="w-full py-16">
       <div className="max-w-4xl mx-auto px-4 md:px-0 flex flex-col gap-6">
 
         <h2 className="text-3xl md:text-4xl font-extrabold text-gray-800 text-center md:text-left mb-6">
