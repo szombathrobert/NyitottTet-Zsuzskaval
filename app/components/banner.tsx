@@ -10,7 +10,7 @@ export default function HeroBanner() {
         src="/banner-bg.webp"
         alt="NyitottTér Banner"
         fill
-        className="object-cover object-[30%_center]" // 🔹 eltolás balra
+        className="object-cover object-[10%_50%] md:object-[30%_50%]"
         priority
       />
 

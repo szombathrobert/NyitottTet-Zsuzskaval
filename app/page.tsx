@@ -6,6 +6,7 @@ import Contact from './components/contact'
 import Footer from './components/footer'
 import Treatments from './components/treatments'
 import ReviewSection from './components/reviews'
+import EventsSection from './components/EventsSection'
 
 const home = () => {
   return (
@@ -16,6 +17,7 @@ const home = () => {
       <Contact/>
       <Treatments/>
       <ReviewSection/>
+      <EventsSection/>
       <Footer/>
     </div>
   )

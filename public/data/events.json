@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "NyitottTér Workshop",
+    "date": "2025-11-15",
+    "description": "Egy nap, hogy felfedezd önmagad és a tér erejét.",
+    "image": "/images/treatments/Kezelés2.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Access Bars Tanfolyam",
+    "date": "2025-12-01",
+    "description": "Tanulj meg minden szükséges technikát a Bars kezeléshez.",
+    "image": "/images/treatments/Kezelés4.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Testkezelések Napja",
+    "date": "2026-01-10",
+    "description": "Fedezd fel a testkezelések világát egy teljes nap alatt.",
+    "image": "/images/treatments/Kezelés4.jpg"
+  }
+]

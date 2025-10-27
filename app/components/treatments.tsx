@@ -21,7 +21,7 @@ export default function Treatments() {
   }, []);
 
   return (
-    <section id="kezelések" className="py-20 px-6">
+    <section id="treatments" className="py-20 px-6">
       <div className="max-w-7xl mx-auto space-y-20">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">
           Kezelések

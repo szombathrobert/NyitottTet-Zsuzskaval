@@ -57,7 +57,7 @@ export default function Navbar() {
 
             <div className="flex space-x-8 items-center">
               <Link href="/" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Főoldal</Link>
-              <Link href="#rolam" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Rólam</Link>
+              <Link href="#about" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Rólam</Link>
 
               <button
                 onClick={() => setKezelésekOpen(prev => !prev)}
@@ -67,7 +67,7 @@ export default function Navbar() {
               </button>
 
               <Link href="#arak" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Árak</Link>
-              <Link href="#kapcsolat" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Kapcsolat</Link>
+              <Link href="#contact" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Kapcsolat</Link>
             </div>
           </div>
         </div>
@@ -146,7 +146,7 @@ export default function Navbar() {
               className="bg-white/90 text-xl backdrop-blur-md shadow-md px-6 py-4 space-y-3"
             >
               <Link href="#fooldal" className="block text-gray-700 hover:text-indigo-600">Főoldal</Link>
-              <Link href="#rolam" className="block text-gray-700 hover:text-indigo-600">Rólam</Link>
+              <Link href="#about" className="block text-gray-700 hover:text-indigo-600">Rólam</Link>
 
               {/* Kezelések mobilon */}
               <div>
