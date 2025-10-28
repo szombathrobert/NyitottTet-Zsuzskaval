@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Access Bars kezelés",
+    "duration": "60 perc",
+    "price": "15 000 Ft/óra"
+  },
+  {
+    "id": 2,
+    "title": "Access Facelift",
+    "duration": "60 perc",
+    "price": "15 000 Ft/óra"
+  },
+  {
+    "id": 3,
+    "title": "Access Testkezelések",
+    "duration": "50-60 perc",
+    "price": "13 000 Ft/óra"
+  },
+  {
+    "id": 4,
+    "title": "Metamorf Masszázs",
+    "duration": "45-50 perc",
+    "price": "15 000 Ft/óra"
+  }
+]

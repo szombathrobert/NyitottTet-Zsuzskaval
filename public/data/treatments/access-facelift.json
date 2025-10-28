@@ -1,41 +1,68 @@
 {
     "id": 1,
-    "title": "Access Bars® kezelés",
-    "slug": "access-bars",
+    "title": "Access Facelift kezelés",
+    "slug": "access-facelift",
     "shortDescription": "Rövid leírás az Access Bars kezelésről.",
     "fullDescription": [
       {
-        "heading": "MI AZ ACCESS BARS®?",
-        "first_content": "Az Access Bars® egy olyan módszer, amelynek célja az, hogy segítse életünk különböző területeit korlátozó hiedelmek, érzések és gondolatok feloldását. Ez az energetikai technika a fejünkön található 32 pont enyhe érintéssel történő stimulálásán alapul, amely hozzájárul az energiaáramlás javításához, így a stressz és az aggodalom csökkentéséhez.",
-        "second_content": "Az Access Bars® – bátran mondhatjuk -, hogy „hozzáférés a lehetőségeink tárházához”. Olyan alternatívák megnyitása, melyek mindez idáig rejtve maradtak előttünk, hiszen tudat alatt működtek – nem kognitívan. A bar-ok pontokat jelölnek az emberi fej bizonyos részein, melyek kapcsolatban állnak az energiaáramlás szabályozásával. Megfigyelések alapján ezek a pontok életünk különböző területeit képviselik, például az egészséget, a pénzt, a kapcsolatokat, a kreativitást, vagy épp a nyugalmat."
+        "heading": "Mi az Access Consciousness® Facelift (vagy pontosabban: Access Energetic Facelift®)?",
+        "first_content": "Az Access Energetic Facelift kezelés egy gyengéd, mégis rendkívül hatékony energetikai eljárás, amely támogatja a testet és az arcot a fiatalosabb, ragyogóbb megjelenés visszanyerésében. A kezelés során finom érintésekkel aktiválódnak azok az energiák, amelyek segítenek feloldani a testben és az arcon tárolt ítéleteket, stresszt és feszültségeket. A kezelés során több mint 30 különböző energia aktiválódik , mely sejtszinten feloldja a testbe zárt feszültséget, ellenállást, fájdalmat és nyugtalanságot, különösen az öregedés kapcsán. Lehetőséget teremt arra, hogy eloszlass mindent, ami miatt megítélted az arcodat.",
+        "second_content": "Az eredmény gyakran lazább, feszesebb, frissebb arcvonás, valamint általános könnyedség és jólétérzet az egész testben. Az Access Energetic Facelift nemcsak a külsőt, hanem a belső kisugárzást is megújítja — természetes, beavatkozásmentes módon"
       },
       {
-        "second_heading": "MIK AZ ACCESS BARS® KEZELÉS HATÁSAI?",
-        "third_content": "Bars kezelések alatt nagyon gyakran a test és az elme is relaxált állapotba kerül. Ennek hatására csökkenhet a stressz, javulhat az alvásminőség, de ez csak a jéghegy csúcsa. Amire valójában képes az Access Bars® kezelés, az az elme számára felfoghatatlan."
+        "second_section_heading": "Milyen hatásai vannak / milyen eredményeket nyújthat egy kezelés?",
+        "second_section_content": "Várható eredmények",
+        "second_section_first_bullet": "a bőr állapotának javulása: élénkebb tónus, ragyogóbb megjelenés,",
+        "second_section_second_bullet": "simább, feszesebb bőr az arcon, a nyakon, a dekoltázson,",
+        "second_section_third_bullet": "ráncok, szarkalábak halványodása, a szem alatti karikák csökkenése,",
+        "second_section_fourth_bullet": "hegek, foltok halványodása,",
+        "second_section_fifth_bullet": "javuló rugalmasság, bőrtextúra finomodása,",
+        "second_section_sixth_bullet": "energiaszint növekedése, „ragyogóbb” megjelenés,",
+        "second_section_seventh_bullet": "több kezelés után tartósabb hatás: bizonyos források szerint kb. 20-alkalomnyi kezelés után tartósabb eredmény érhető el."
       },
       {
-        "third_heading": "MIT VÁRHATUNK EGY ACCESS BARS® KEZELÉS UTÁN?",
-        "fourth_content": "Minden alkalom más. A legrosszabb, amit egy ACCESS Bars® kezelés után tapasztalhatsz, hogy úgy érzed, mintha egy remek masszázst kaptál volna. A legjobb, ami történhet, hogy az egész életed megváltozik. A leggyakoribb tapasztalatok szerint nagyobb békesség és könnyedség jelenik meg, sokkal kevésbé vagy érzékeny azokban a helyzetekben, amelyek azelőtt felizgattak, pihentetőbb és mélyebb alvást tapasztalhatsz meg, és azt érezheted, hogy azok a dolgok, amelyek korábban dühítettek, nem számítanak többé."
+        "third_section_heading": "Lelki/mentális-energetikai hatások",
+        "third_section_first_bullet": "az öregedéssel, saját testtel, megjelenéssel kapcsolatos hiedelmek oldódása",
+        "third_section_second_bullet": "önbizalom, test‐ és önkép javulása.",
+        "third_section_third_bullet": "relaxáció, stresszcsökkenés, belső feszültségek oldása,",
+        "third_section_fourth_bullet": "kisugárzás-javulás: az arc és tekintet „ragyogóbbá”, „frissebbé” válhat."
       },
       {
-        "fourth_heading": "MILYEN GYAKRAN LEHET FUTTATNI AZ ACCESS BAROKAT?",
-        "fifth_content": "Az Access Bars® gyakoriságára nincsen ajánlás, nincsenek javaslatok sem, pusztán annyi a kérdés, hogy ki mennyire szeretné az életében a nagyobb könnyedséget, mennyire szeretné jól, sőt egyre jobban érezni magát." 
+        "fourth_section_heading": "Milyen előnyei vannak?",
+        "fourth_section_first_bullet": "Nem invazív: nem szükséges műtét, injekció, kémiai anyagok alkalmazása,",
+        "fourth_section_second_bullet": "Kíméletes: sok kliens „pihenésként”, relaxációként is megéli,",
+        "fourth_section_third_bullet": "Holisticus megközelítés: nem csak a bőr fizikai állapotára, hanem az energetikai és tudati szintre is hatással van, (Test-Lélek-Tudat hármas)",
+        "fourth_section_fourth_bullet": "Idő- és komfort-szempontból előnyös lehet: egy kezeléssel egyszerre lehet a bőr megjelenését és a belső állapotot is javítani."
       },
       {
-        "fifth_heading": "MEDDIG TART EGY ACCESS BARS® KEZELÉS HATÁSA?",
-        "sixth_content": "Ha egyszer kaptál már kezelést, a barjaid ettől kezdve örökké „futnak”, avagy folyamatosan engedik el a megrekedt energiákat. Ezek után minden alkalommal, amikor kezelést kapsz, a hatás erőteljesebbé válik. A legkézzelfoghatóbb változásokról a kezelést követő 3-4 hétben szoktak beszámolni."
+        "fifth_section_heading": "Hogyan zajlik egy kezelés?",
+        "fifth_section_first_bullet": "a vendég kényelmesen fekszik egy masszázságyon ruhában,",
+        "fifth_section_second_bullet": "a kezelő finom, felfelé húzó mozdulatokkal, kézrátéttel stimulálja az arc, nyak, dekoltázs, fejbőr és bizonyos esetekben további testterületek energiáit,",
+        "fifth_section_third_bullet": "a kezelés alatt tudatosan oldódhatnak a „testtel, öregedéssel, kinézettel” kapcsolatos nézőpontok, hiedelmek is – tehát nemcsak fizikai érintés történik, hanem tudati/érzelmi munka is,",
+        "fifth_section_fourth_bullet": "végül a vendég sokszor ellazulva, megújulva kel fel a kezelőágyból. (Sok helyen említik, hogy az élmény „mintha lebegnék”-ként jelenik meg.)"
       },
       {
-        "sixth_heading": "HONNAN ERED A BARS®?",
-        "seventh_content": "A Bars®t 1990-ben csatornázta Gary Douglas, az Access Consciousness alapítója. Azelőtt nem létezett"
+        "sixth_section_heading": "Meddig tart egy kezelés?",
+        "sixth_section_first_bullet": "a kezelés hossza általában kb. 60 perc.",
+        "sixth_section_second_bullet": "ajánlott lehet kúraszerűen több alkalom (pl. 4-5 alkalom, vagy akár 10-20 alkalom) a tartósabb eredményért."
       },
       {
-        "seventh_heading": "MENNYI IDEIG TART EGY BARS® KEZELÉS?",
-        "eight_content": "Általában 60-90 percig, bár ez változhat, és még egy 20 perces kezelés is jobb, mint a semmi."
+        "seventh_section_heading": "Kiknek ajánlott?",
+        "seventh_section_first_bullet": "akik természetes módon, műtéti beavatkozás vagy injekció nélkül szeretnének fiatalosabb megjelenést,",
+        "seventh_section_second_bullet": "akik fontosnak tartják a testi és lelki energetikai jólétet együtt,",
+        "seventh_section_third_bullet": "akik számára a bőr feszessége, ragyogása mellett fontos a relaxáció és belső megújulás,",
+        "seventh_section_fourth_bullet": "akik stresszes életmódot folytatnak, és érzik, hogy bőrük „fáradtabbnak”, tónustalannak tűnik,",
+        "seventh_section_fifth_bullet": "akik nyitottak arra, hogy a testükkel kapcsolatos hiedelmeiket, nézőpontjaikat is vizsgálják,",
+        "seventh_section_sixth_bullet": "azoknak is, akik testükkel való viszonyukat szeretnék javítani – például önértékelés, testkép, önkép tekintetében,",
+        "seventh_section_seventh_bullet": "Fontos: nem helyettesíti a hagyományos orvosi vagy kozmetológiai kezelést, ha például komoly bőrprobléma (betegség, seb, mély hegek) áll fenn."
       },
-      {
-        "eight_heading": "LEHET-E TERHESSÉG ALATT A BAROKAT FUTTATNI?",
-        "nineth_content": "Igen! (Természetesen meg kell kérnünk, hogy konzultálj az orvosoddal.) Azok a nők, akik rendszeresen kaptak Bars kezelést, rövidebb, könnyebb szülésről számoltak be, és sokan közülük elkerülték a császármetszést."
+            {
+        "eight_section_heading": "Miért válasszuk az Access Facelift kezelést?",
+        "eight_section_first_bullet": "mert egyszerre célozza a megjelenést (ráncok, bőr állapota) és az energetikai/lelkivilági aspektust – egy integráltabb megoldás lehet, mint pusztán felszínes bőrápolás,",
+        "eight_section_second_bullet": "mert kockázat- és beavatkozás-mentes – nincs heg, nincs injekció, nincs műtét.",
+        "eight_section_third_bullet": "mert lehetőség van „első alkalomként kipróbálni”, mielőtt hosszabb kúrába kezdenénk,",
+        "eight_section_fourth_bullet": "ha olyan kezelést keresel, ami lényegében „pihenés + megújulás” kombináció, akkor jó választás lehet,",
+        "eight_section_fifth_bullet": "ha fontos számodra, hogy a tested, bőröd, külsőd változzon, de nem csak külsődben, hanem a belső hozzáállásban, életmódban is – akkor ez a kezelés nyújthat pluszt."
       }
     ],
     "img": "/images/treatments/Kezelés2.jpg",

@@ -5,6 +5,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import Link from "next/link";
 
+// --- Magyar ékezeteket kezelő slugify függvény ---
+const slugify = (text: string) => {
+  return text
+    .toLowerCase()
+    .replace(/á/g, "a")
+    .replace(/é/g, "e")
+    .replace(/í/g, "i")
+    .replace(/ó|ö|ő/g, "o")
+    .replace(/ú|ü|ű/g, "u")
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]+/g, ""); // eltávolít minden nem betű/szám karaktert
+};
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [kezelésekOpen, setKezelésekOpen] = useState(false);
@@ -107,15 +120,18 @@ export default function Navbar() {
               className="w-full bg-white backdrop-blur-md shadow-md z-30"
             >
               <div className="max-w-7xl mx-auto px-6 py-3 flex justify-center gap-8">
-                {testkezelések.map(item => (
-                  <Link
-                    key={item}
-                    href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
-                    className="text-xl text-gray-700 hover:text-indigo-600"
-                  >
-                    {item}
-                  </Link>
-                ))}
+                {testkezelések.map(item => {
+                  const slug = slugify(item);
+                  return (
+                    <Link
+                      key={item}
+                      href={`/kezelesek/${slug}`}
+                      className="text-xl text-gray-700 hover:text-indigo-600"
+                    >
+                      {item}
+                    </Link>
+                  );
+                })}
               </div>
             </motion.div>
           )}
@@ -186,15 +202,18 @@ export default function Navbar() {
                               exit={{ opacity: 0, y: -5 }}
                               className="mt-2 pl-4 space-y-1"
                             >
-                              {testkezelések.map(item => (
-                                <Link
-                                  key={item}
-                                  href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
-                                  className="block hover:text-indigo-600"
-                                >
-                                  {item}
-                                </Link>
-                              ))}
+                              {testkezelések.map(item => {
+                                const slug = slugify(item);
+                                return (
+                                  <Link
+                                    key={item}
+                                    href={`/kezelesek/${slug}`}
+                                    className="block hover:text-indigo-600"
+                                  >
+                                    {item}
+                                  </Link>
+                                );
+                              })}
                             </motion.div>
                           )}
                         </AnimatePresence>
