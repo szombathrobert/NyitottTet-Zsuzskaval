@@ -40,7 +40,7 @@ interface Treatment {
   fullDescription: FullDescription[];
 }
 
-export default function AccessBarsPage() {
+export default function MidasPage() {
   const filePath = path.join(process.cwd(), "public/data/treatments/midas-es-krozus.json");
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const treatment: Treatment = JSON.parse(fileContent);

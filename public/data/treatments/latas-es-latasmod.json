@@ -2,7 +2,7 @@
     "id": 1,
     "title": "Látás és Látásmód Helyreállítás",
     "slug": "latas-es-latasmod-helyreallitas",
-    "shortDescription": "Rövid leírás az Access Bars kezelésről.",
+    "shortDescription": "A kezelés célja a szemhez és a látáshoz kapcsolódó energetikai blokkok oldása.",
     "fullDescription": [
       {
         "heading": "Látás és látásmód helyreállítás",
@@ -42,6 +42,6 @@
         "fourth_section_fifth_bullet": "Akik szeretnének új nézőpontokat befogadni az életükben."
       }
     ],
-    "img": "/images/treatments/Kezelés2.jpg",
+    "img": "/images/treatments/latas.jpg",
     "link": "/kezelesek/latas-es-latasmod-helyreallitas"
   }

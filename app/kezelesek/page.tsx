@@ -24,8 +24,14 @@ export default function TreatmentsPage() {
   });
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold text-gray-800 mb-8">Kezelések</h1>
+    <div className="max-w-6xl mx-auto px-4 py-12 mt-20">
+            <Link
+        href="/"
+        className="inline-block mb-5 text-gray-800 rounded-lg transition-colors"
+      >
+        ← Vissza a kezdőlapra
+      </Link>
+      <h1 className="text-3xl md:text-5xl font-bold text-gray-800 mb-8">Kezelések</h1>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {treatments.map((treatment) => (
           <Link

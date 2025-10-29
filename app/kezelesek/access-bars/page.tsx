@@ -42,7 +42,7 @@ export default function AccessBarsPage() {
     <div className="max-w-5xl mx-auto px-4 py-12">
         
       <Link
-        href="#kezelesek"
+        href="/kezelesek"
         className="inline-block mt-8 px-6 py-3 text-gray-800 rounded-lg transition-colors"
       >
         ← Vissza a kezelésekhez
@@ -65,23 +65,23 @@ export default function AccessBarsPage() {
 
       {treatment.fullDescription.map((section, idx) => (
         <div key={idx} className="mb-6">
-          <h2 className="text-2xl md:text-5xl font-semibold text-gray-800 mb-5">{section.heading}</h2>
-          <p className="text-gray-700 text-xl md:text-2xl whitespace-pre-line mb-10">{section.first_content}</p>
-          <p className="text-gray-700 text-xl md:text-2xl whitespace-pre-line mb-20">{section.second_content}</p>
-          <h2 className="text-2xl md:text-5xl font-semibold text-gray-800 mb-5">{section.second_heading}</h2>
-          <p className="text-gray-700 text-xl md:text-2xl whitespace-pre-line mb-20">{section.third_content}</p>
-          <h2 className="text-2xl md:text-5xl font-semibold text-gray-800 mb-5">{section.third_heading}</h2>
-          <p className="text-gray-700 text-xl md:text-2xl whitespace-pre-line mb-20">{section.fourth_content}</p>
-          <h2 className="text-2xl md:text-5xl font-semibold text-gray-800 mb-5">{section.fourth_heading}</h2>
-          <p className="text-gray-700 text-xl md:text-2xl whitespace-pre-line mb-20">{section.fifth_content}</p>
-          <h2 className="text-2xl md:text-5xl font-semibold text-gray-800 mb-5">{section.fifth_heading}</h2>
-          <p className="text-gray-700 text-xl md:text-2xl whitespace-pre-line mb-20">{section.sixth_content}</p>
-          <h2 className="text-2xl md:text-5xl font-semibold text-gray-800 mb-5">{section.sixth_heading}</h2>
-          <p className="text-gray-700 text-xl md:text-2xl whitespace-pre-line mb-20">{section.seventh_content}</p>
-          <h2 className="text-2xl md:text-5xl font-semibold text-gray-800 mb-5">{section.seventh_heading}</h2>
-          <p className="text-gray-700 text-xl md:text-2xl whitespace-pre-line mb-20">{section.eight_content}</p>
-          <h2 className="text-2xl md:text-5xl font-semibold text-gray-800 mb-5">{section.eight_heading}</h2>
-          <p className="text-gray-700 text-xl md:text-2xl whitespace-pre-line">{section.nineth_content}</p>
+          <h2 className="text-2xl md:text-4xl font-semibold text-gray-800 mb-5">{section.heading}</h2>
+          <p className="text-gray-700 text-2xl md:text-3xl  whitespace-pre-line mb-10">{section.first_content}</p>
+          <p className="text-gray-700 text-2xl md:text-3xl  whitespace-pre-line mb-20">{section.second_content}</p>
+          <h2 className="text-2xl md:text-4xl font-semibold text-gray-800 mb-5">{section.second_heading}</h2>
+          <p className="text-gray-700 text-2xl md:text-3xl  whitespace-pre-line mb-20">{section.third_content}</p>
+          <h2 className="text-2xl md:text-4xl font-semibold text-gray-800 mb-5">{section.third_heading}</h2>
+          <p className="text-gray-700 text-2xl md:text-3xl  whitespace-pre-line mb-20">{section.fourth_content}</p>
+          <h2 className="text-2xl md:text-4xl font-semibold text-gray-800 mb-5">{section.fourth_heading}</h2>
+          <p className="text-gray-700 text-2xl md:text-3xl  whitespace-pre-line mb-20">{section.fifth_content}</p>
+          <h2 className="text-2xl md:text-4xl font-semibold text-gray-800 mb-5">{section.fifth_heading}</h2>
+          <p className="text-gray-700 text-2xl md:text-3xl  whitespace-pre-line mb-20">{section.sixth_content}</p>
+          <h2 className="text-2xl md:text-4xl font-semibold text-gray-800 mb-5">{section.sixth_heading}</h2>
+          <p className="text-gray-700 text-2xl md:text-3xl  whitespace-pre-line mb-20">{section.seventh_content}</p>
+          <h2 className="text-2xl md:text-4xl font-semibold text-gray-800 mb-5">{section.seventh_heading}</h2>
+          <p className="text-gray-700 text-2xl md:text-3xl  whitespace-pre-line mb-20">{section.eight_content}</p>
+          <h2 className="text-2xl md:text-4xl font-semibold text-gray-800 mb-5">{section.eight_heading}</h2>
+          <p className="text-gray-700 text-2xl md:text-3xl  whitespace-pre-line">{section.nineth_content}</p>
         </div>
       ))}
 

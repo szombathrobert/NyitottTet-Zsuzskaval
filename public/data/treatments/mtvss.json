@@ -2,7 +2,7 @@
     "id": 1,
     "title": "MTVSS = egészséges test visszaállítása, immunrendszer erősítése testkezelés",
     "slug": "mtvss",
-    "shortDescription": "Rövid leírás az Access Bars kezelésről.",
+    "shortDescription": "Egy olyan energetikai módszer, amely segít a testnek visszaállítani eredeti működési egyensúlyát, felszabadítani a berögzült korlátozásokat, és újraindítani a természetes regenerációs folyamatokat.",
     "fullDescription": [
       {
         "heading": "MTVSS = egészséges test visszaállítása, immunrendszer erősítése testkezelés",
@@ -48,6 +48,6 @@
         "sixth_section_second_content": "Ez a kezelés egy meghívás arra, hogy újra kapcsolatba kerülj a tested bölcsességével – és megengedd neki, hogy könnyedén, örömmel és harmóniában működjön."
       }
     ],
-    "img": "/images/treatments/Kezelés2.jpg",
+    "img": "/images/treatments/mtvss.jpg",
     "link": "/kezelesek/mtvss"
   }

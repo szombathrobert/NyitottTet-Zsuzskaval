@@ -69,7 +69,7 @@ interface Treatment {
   fullDescription: FullDescription[];
 }
 
-export default function AccessBarsPage() {
+export default function AccessBarsKidsPage() {
   const filePath = path.join(process.cwd(), "public/data/treatments/access-bars-gyerekeknek.json");
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const treatment: Treatment = JSON.parse(fileContent);

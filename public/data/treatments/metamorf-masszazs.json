@@ -2,7 +2,7 @@
     "id": 1,
     "title": "Metamorf Masszázs",
     "slug": "metamorf-masszazs",
-    "shortDescription": "Rövid leírás az Access Bars kezelésről.",
+    "shortDescription": "A metamorf masszázs egy különleges, gyengéd energetikai kezelés, amely a talpon, a kézen és a fejen végzett finom, simító mozdulatokkal dolgozik. Ezek az érintések energiahullámokat indítanak el, amelyek segíthetnek felszabadítani tudatalatti blokkokat, lelki sérüléseket vagy traumákat, és támogatják az öngyógyító folyamatokat .",
     "fullDescription": [
       {
         "heading": "A szó eredete: metamorfózis= átváltozás, átalakulás",
@@ -47,6 +47,6 @@
         "sixth_section_content_ending": "Olyan embereknek szokott jól jönni, akik szeretnének kicsit lelassulni, elcsendesedni, és támogatást kapni a változáshoz – anélkül, hogy beszélniük kellene róla."
       }
     ],
-    "img": "/images/treatments/Kezelés2.jpg",
+    "img": "/images/treatments/metamorf.jpg",
     "link": "/kezelesek/metamorf-masszazs"
   }

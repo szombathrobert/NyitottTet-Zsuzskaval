@@ -53,7 +53,7 @@ interface Treatment {
   fullDescription: FullDescription[];
 }
 
-export default function AccessBarsPage() {
+export default function MetamorfPage() {
   const filePath = path.join(process.cwd(), "public/data/treatments/metamorf-masszazs.json");
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const treatment: Treatment = JSON.parse(fileContent);

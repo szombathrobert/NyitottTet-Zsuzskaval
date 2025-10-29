@@ -6,7 +6,7 @@ import Link from "next/link";
 interface Treatment {
   id: number;
   title: string;
-  desc: string;
+  shortDescription: string;
   img: string;
   link: string;
 }
@@ -23,7 +23,7 @@ export default function Treatments() {
   return (
     <section id="treatments" className="py-20 px-6">
       <div className="max-w-7xl mx-auto space-y-20">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">
+        <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-10">
           Kezelések
         </h2>
 
@@ -36,7 +36,7 @@ export default function Treatments() {
           >
             {/* Kép */}
             <div className="md:w-1/2 w-full flex justify-center">
-              <div className="relative w-full h-72 md:h-96">
+              <div className="relative w-100 h-50 md:h-70">
                 <Image
                   src={treatment.img}
                   alt={treatment.title}
@@ -48,13 +48,13 @@ export default function Treatments() {
 
             {/* Szöveg */}
             <div className="md:w-1/2 w-full text-center md:text-left">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+              <h3 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
                 {treatment.title}
               </h3>
-              <p className="text-gray-600 mb-6">{treatment.desc}</p>
+              <p className="text-gray-600 mb-6 text-xl md:text-2xl">{treatment.shortDescription}</p>
               <Link
                 href={treatment.link}
-                className="bg-[#A0937D] hover:bg-[#8a836e] text-white px-5 py-2 rounded-xl transition"
+                className="bg-[#A0937D] hover:bg-[#8a836e] text-white px-5 py-2 rounded-xl transition text-xl md:text-xl"
               >
                 Tovább a kezelésre
               </Link>

@@ -2,7 +2,7 @@
     "id": 1,
     "title": "Access Bars® Kezelés Gyerekeknek",
     "slug": "access-bars-gyerekeknek",
-    "shortDescription": "Rövid leírás az Access Bars kezelésről.",
+    "shortDescription": "Az Access Bars kezelés segíthet lecsendesíteni az idegrendszert, és könnyedséget hoz az elmébe és a testbe.",
     "fullDescription": [
       {
         "heading": "A mai gyerekekre rengeteg inger, elvárás és stressz hat. Sokuk nehezen tud megnyugodni, fókuszálni vagy kifejezni magát. Az Access Bars kezelés segíthet lecsendesíteni az idegrendszert, és könnyedséget hoz az elmébe és a testbe."
@@ -72,6 +72,6 @@
         "fourth_section_ending": "Sok gyerek annyira ellazul, hogy el is szenderedik közben."
       }
     ],
-    "img": "/images/treatments/access-bars.jpg",
+    "img": "/images/treatments/access-gyerekeknek.jpg",
     "link": "/kezelesek/access-bars"
   }

@@ -5,39 +5,33 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import Link from "next/link";
 
-// --- Magyar ékezeteket kezelő slugify függvény ---
-const slugify = (text: string) => {
-  return text
-    .toLowerCase()
-    .replace(/á/g, "a")
-    .replace(/é/g, "e")
-    .replace(/í/g, "i")
-    .replace(/ó|ö|ő/g, "o")
-    .replace(/ú|ü|ű/g, "u")
-    .replace(/\s+/g, "-")
-    .replace(/[^\w-]+/g, ""); // eltávolít minden nem betű/szám karaktert
-};
+// --- Kezelések JSON (lehet később külön fájlban) ---
+const kezelesek = [
+  { name: "Access Bars", slug: "access-bars" },
+  { name: "Access Bars gyerekeknek", slug: "access-bars-gyerekeknek" },
+  { name: "Access Facelift", slug: "access-facelift" },
+];
+
+const testkezelesek = [
+  { name: "MTVSS", slug: "mtvss" },
+  { name: "Látás és látásmód helyreállítás", slug: "latas-es-latasmod-helyreallitas" },
+  { name: "Midas és Krőzus", slug: "midas-es-krozus" },
+  { name: "Metamorf Masszázs", slug: "metamorf-masszazs" },
+];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [kezelésekOpen, setKezelésekOpen] = useState(false);
-  const [testkezelésekOpen, setTestkezelésekOpen] = useState(false);
+  const [kezelesekOpen, setKezelesekOpen] = useState(false);
+  const [testkezelesekOpen, setTestkezelesekOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
-
-  const testkezelések = [
-    "MTVSS",
-    "Látás és látásmód helyreállítás",
-    "Midas és Krőzus",
-    "Metamorf Masszázs",
-  ];
 
   // --- Kattintás a navbaron kívül ---
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {
         setMenuOpen(false);
-        setKezelésekOpen(false);
-        setTestkezelésekOpen(false);
+        setKezelesekOpen(false);
+        setTestkezelesekOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -47,22 +41,28 @@ export default function Navbar() {
   // --- Menü bezárásakor minden almenü csukódjon ---
   useEffect(() => {
     if (!menuOpen) {
-      setKezelésekOpen(false);
-      setTestkezelésekOpen(false);
+      setKezelesekOpen(false);
+      setTestkezelesekOpen(false);
     }
   }, [menuOpen]);
 
   // --- Kezelések bezárásakor testkezelések is zárjon ---
   useEffect(() => {
-    if (!kezelésekOpen) setTestkezelésekOpen(false);
-  }, [kezelésekOpen]);
+    if (!kezelesekOpen) setTestkezelesekOpen(false);
+  }, [kezelesekOpen]);
+
+  // --- Oldalváltáskor mobilon bezárja a menüt ---
+  const handleLinkClick = () => {
+    setMenuOpen(false);
+    setKezelesekOpen(false);
+    setTestkezelesekOpen(false);
+  };
 
   return (
     <nav ref={navRef} className="fixed top-0 left-0 w-full z-50">
 
       {/* DESKTOP */}
       <div className="hidden md:block">
-
         {/* Fő navbar */}
         <div className="w-full bg-white backdrop-blur-md shadow-md">
           <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
@@ -70,24 +70,24 @@ export default function Navbar() {
 
             <div className="flex space-x-8 items-center">
               <Link href="/" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Főoldal</Link>
-              <Link href="#about" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Rólam</Link>
+              <Link href="/#about" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Rólam</Link>
 
               <button
-                onClick={() => setKezelésekOpen(prev => !prev)}
+                onClick={() => setKezelesekOpen(prev => !prev)}
                 className="text-2xl flex items-center text-gray-700 hover:text-indigo-600 transition-colors cursor-pointer"
               >
                 Kezelések <ChevronDown className="ml-1 w-4 h-4" />
               </button>
 
               <Link href="/arak" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Árak</Link>
-              <Link href="/contact" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Kapcsolat</Link>
+              <Link href="/kapcsolat" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Kapcsolat</Link>
             </div>
           </div>
         </div>
 
         {/* Kezelések lenyíló sáv */}
         <AnimatePresence>
-          {kezelésekOpen && (
+          {kezelesekOpen && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -95,12 +95,19 @@ export default function Navbar() {
               className="w-full bg-white backdrop-blur-md shadow-md z-40"
             >
               <div className="max-w-7xl mx-auto px-6 py-3 flex justify-center gap-8">
-                <Link href="/kezelesek/access-bars" className="text-xl text-gray-700 hover:text-indigo-600">Access Bars</Link>
-                <Link href="/kezelesek/access-bars-gyerekeknek" className="text-xl text-gray-700 hover:text-indigo-600">Access Bars gyerekeknek</Link>
-                <Link href="/kezelesek/access-facelift" className="text-xl text-gray-700 hover:text-indigo-600">Access Facelift</Link>
+                {kezelesek.map(item => (
+                  <Link
+                    key={item.slug}
+                    href={`/kezelesek/${item.slug}`}
+                    className="text-xl text-gray-700 hover:text-indigo-600"
+                    onClick={handleLinkClick}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
 
                 <button
-                  onClick={() => setTestkezelésekOpen(prev => !prev)}
+                  onClick={() => setTestkezelesekOpen(prev => !prev)}
                   className="text-xl flex items-center text-gray-700 hover:text-indigo-600 cursor-pointer"
                 >
                   Testkezelések <ChevronDown className="ml-1 w-4 h-4" />
@@ -112,7 +119,7 @@ export default function Navbar() {
 
         {/* Testkezelések lenyíló sáv */}
         <AnimatePresence>
-          {testkezelésekOpen && (
+          {testkezelesekOpen && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -120,23 +127,20 @@ export default function Navbar() {
               className="w-full bg-white backdrop-blur-md shadow-md z-30"
             >
               <div className="max-w-7xl mx-auto px-6 py-3 flex justify-center gap-8">
-                {testkezelések.map(item => {
-                  const slug = slugify(item);
-                  return (
-                    <Link
-                      key={item}
-                      href={`/kezelesek/${slug}`}
-                      className="text-xl text-gray-700 hover:text-indigo-600"
-                    >
-                      {item}
-                    </Link>
-                  );
-                })}
+                {testkezelesek.map(item => (
+                  <Link
+                    key={item.slug}
+                    href={`/kezelesek/${item.slug}`}
+                    className="text-xl text-gray-700 hover:text-indigo-600"
+                    onClick={handleLinkClick}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
               </div>
             </motion.div>
           )}
         </AnimatePresence>
-
       </div>
 
       {/* MOBILE */}
@@ -161,59 +165,64 @@ export default function Navbar() {
               exit={{ opacity: 0, y: -10 }}
               className="bg-white/90 text-xl backdrop-blur-md shadow-md px-6 py-4 space-y-3"
             >
-              <Link href="/" className="block text-gray-700 hover:text-indigo-600">Főoldal</Link>
-              <Link href="#about" className="block text-gray-700 hover:text-indigo-600">Rólam</Link>
+              <Link href="/" className="block text-gray-700 hover:text-indigo-600" onClick={handleLinkClick}>Főoldal</Link>
+              <Link href="/#about" className="block text-gray-700 hover:text-indigo-600" onClick={handleLinkClick}>Rólam</Link>
 
               {/* Kezelések mobilon */}
               <div>
                 <button
-                  onClick={() => setKezelésekOpen(prev => !prev)}
+                  onClick={() => setKezelesekOpen(prev => !prev)}
                   className="w-full flex justify-between items-center text-gray-700 hover:text-indigo-600"
                 >
                   Kezelések <ChevronDown className="w-4 h-4" />
                 </button>
 
                 <AnimatePresence>
-                  {kezelésekOpen && (
+                  {kezelesekOpen && (
                     <motion.div
                       initial={{ opacity: 0, y: -5 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -5 }}
                       className="mt-2 pl-4 space-y-1"
                     >
-                      <Link href="/kezelesek/access-bars" className="block hover:text-indigo-600">Access Bars</Link>
-                      <Link href="/kezelesek/access-bars-gyerekeknek" className="block hover:text-indigo-600">Access Bars gyerekeknek</Link>
-                      <Link href="/kezelesek/access-facelift" className="block hover:text-indigo-600">Access Facelift</Link>
+                      {kezelesek.map(item => (
+                        <Link
+                          key={item.slug}
+                          href={`/kezelesek/${item.slug}`}
+                          className="block hover:text-indigo-600"
+                          onClick={handleLinkClick}
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
 
                       {/* Testkezelések mobilon */}
                       <div>
                         <button
-                          onClick={() => setTestkezelésekOpen(prev => !prev)}
+                          onClick={() => setTestkezelesekOpen(prev => !prev)}
                           className="flex items-center justify-between w-full hover:text-indigo-600"
                         >
                           Testkezelések <ChevronDown className="w-4 h-4" />
                         </button>
 
                         <AnimatePresence>
-                          {testkezelésekOpen && (
+                          {testkezelesekOpen && (
                             <motion.div
                               initial={{ opacity: 0, y: -5 }}
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: -5 }}
                               className="mt-2 pl-4 space-y-1"
                             >
-                              {testkezelések.map(item => {
-                                const slug = slugify(item);
-                                return (
-                                  <Link
-                                    key={item}
-                                    href={`/kezelesek/${slug}`}
-                                    className="block hover:text-indigo-600"
-                                  >
-                                    {item}
-                                  </Link>
-                                );
-                              })}
+                              {testkezelesek.map(item => (
+                                <Link
+                                  key={item.slug}
+                                  href={`/kezelesek/${item.slug}`}
+                                  className="block hover:text-indigo-600"
+                                  onClick={handleLinkClick}
+                                >
+                                  {item.name}
+                                </Link>
+                              ))}
                             </motion.div>
                           )}
                         </AnimatePresence>
@@ -223,8 +232,8 @@ export default function Navbar() {
                 </AnimatePresence>
               </div>
 
-              <Link href="#arak" className="block text-gray-700 hover:text-indigo-600">Árak</Link>
-              <Link href="#kapcsolat" className="block text-gray-700 hover:text-indigo-600">Kapcsolat</Link>
+              <Link href="/arak" className="block text-gray-700 hover:text-indigo-600" onClick={handleLinkClick}>Árak</Link>
+              <Link href="/kapcsolat" className="block text-gray-700 hover:text-indigo-600" onClick={handleLinkClick}>Kapcsolat</Link>
             </motion.div>
           )}
         </AnimatePresence>

@@ -7,7 +7,7 @@ export default function Contact() {
     <section className="w-full py-8">
       <div className="max-w-4xl mx-auto px-4 md:px-0 flex flex-col items-center gap-8">
 
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">
+        <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-8 text-center">
           Kapcsolat
         </h2>
 

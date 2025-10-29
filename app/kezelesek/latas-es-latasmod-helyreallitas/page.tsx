@@ -69,7 +69,7 @@ interface Treatment {
   fullDescription: FullDescription[];
 }
 
-export default function AccessBarsPage() {
+export default function EyesightPage() {
   const filePath = path.join(process.cwd(), "public/data/treatments/latas-es-latasmod.json");
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const treatment: Treatment = JSON.parse(fileContent);
