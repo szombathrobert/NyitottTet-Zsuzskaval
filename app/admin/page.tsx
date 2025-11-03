@@ -1,70 +1,75 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-export default function TartalomFelvetel() {
-  const [nev, setNev] = useState("");
-  const [slug, setSlug] = useState("");
-  const [file, setFile] = useState<File | null>(null);
-  const [status, setStatus] = useState("");
+export default function AdminLogin() {
+  const router = useRouter();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!file) return setStatus("Válassz ki egy Word dokumentumot!");
+    setLoading(true);
 
-    const formData = new FormData();
-    formData.append("nev", nev);
-    formData.append("slug", slug);
-    formData.append("file", file);
+    try {
+      const res = await fetch("http://localhost:5000/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
 
-    const token = localStorage.getItem("adminToken");
-    if (!token) return setStatus("Jelentkezz be újra!");
+      const data = await res.json();
 
-    const res = await fetch("http://localhost:5000/admin/kezelesek/uj", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${token}`,
-      },
-      body: formData,
-    });
-
-    const data = await res.json();
-    if (data.success) {
-      setStatus("Sikeresen feltöltve!");
-      setNev("");
-      setSlug("");
-      setFile(null);
-    } else {
-      setStatus("Hiba történt: " + data.error);
+      if (data.success && data.token) {
+        localStorage.setItem("adminToken", data.token);
+        router.push("/admin/dashboard");
+      } else {
+        alert("Hibás felhasználónév vagy jelszó!");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Hálózati hiba történt a bejelentkezés során.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <input
-        type="text"
-        placeholder="Kezelés neve"
-        value={nev}
-        onChange={(e) => setNev(e.target.value)}
-        className="border p-2 rounded"
-      />
-      <input
-        type="text"
-        placeholder="Slug"
-        value={slug}
-        onChange={(e) => setSlug(e.target.value)}
-        className="border p-2 rounded"
-      />
-      <input
-        type="file"
-        accept=".doc,.docx"
-        onChange={(e) => e.target.files && setFile(e.target.files[0])}
-        className="border p-2 rounded"
-      />
-      <button type="submit" className="bg-pink-500 text-white py-2 rounded">
-        Feltöltés
-      </button>
-      {status && <p>{status}</p>}
-    </form>
+    <div className="flex items-center justify-center h-screen bg-linear-to-br from-pink-200 via-white to-purple-200">
+      <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-sm">
+        <h1 className="text-2xl font-bold mb-6 text-center text-pink-600">
+          Admin bejelentkezés
+        </h1>
+        <form onSubmit={handleLogin} className="space-y-4">
+          <input
+            type="text"
+            placeholder="Felhasználónév"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="w-full p-2 border rounded focus:ring-2 focus:ring-pink-400"
+            required
+          />
+
+          <input
+            type="password"
+            placeholder="Jelszó"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-2 border rounded focus:ring-2 focus:ring-pink-400"
+            required
+          />
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 rounded transition"
+          >
+            {loading ? "Bejelentkezés..." : "Belépés"}
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }

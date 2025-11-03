@@ -7,6 +7,7 @@ import { PrismaClient } from "@prisma/client";
 import multer from "multer";
 import fs from "fs";
 import mammoth from "mammoth";
+import * as cheerio from 'cheerio'; // ✅
 
 const app = express();
 const prisma = new PrismaClient();
@@ -72,14 +73,41 @@ app.post("/admin/kezelesek", verifyToken, upload.single("file"), async (req, res
     const { cim, slug, ar } = req.body;
     const filePath = req.file.path;
 
+    // 1️⃣ Word -> HTML
     const result = await mammoth.convertToHtml({ path: filePath });
-    const tartalom = result.value; // ez már HTML
+    let html = result.value; // ez már HTML
 
+    // 2️⃣ HTML feldolgozása: címek és bekezdések
+    const $ = cheerio.load(html);
+
+    $('p').each((i, el) => {
+      const style = $(el).attr('style') || '';
+
+      // Nagyobb, félkövér szöveg -> h2
+      if (style.includes('font-size: 28px') || style.includes('font-weight: bold')) {
+        $(el).replaceWith(`<h2 class="text-4xl font-bold">${$(el).html()}</h2>`);
+      } else {
+        // Normál p, 2xl méret
+        $(el).replaceWith(`<p class="text-2xl">${$(el).html()}</p>`);
+      }
+    });
+
+    // H2 után 2 <br> beszúrása
+      $('h2').each((i, el) => {
+        $(el).after('<br><br>');
+      });
+
+    // 3️⃣ Eredmény
+    const tartalom = $.html();
+
+    // 4️⃣ Mentés a DB-be
     const newKezeles = await prisma.kezeles.create({
       data: { cim, slug, ar, tartalom },
     });
 
-    fs.unlinkSync(filePath); // feltöltött fájl törlése
+    // 5️⃣ Fájl törlése
+    fs.unlinkSync(filePath);
+
     res.json({ success: true, kezes: newKezeles });
   } catch (err) {
     console.error(err);
@@ -139,6 +167,26 @@ app.delete("/admin/kezelesek/:id", verifyToken, async (req, res) => {
     res.status(500).json({ error: "Hiba történt a kezelés törlésekor" });
   }
 });
+
+// Kezelés lekérése slug alapján (pl. /admin/kezelesek/slug/access-bars)
+app.get("/admin/kezelesek/slug/:slug", async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const kezeles = await prisma.kezeles.findUnique({
+      where: { slug },
+    });
+
+    if (!kezeles) {
+      return res.status(404).json({ error: "Nem található kezelés ezzel a sluggal." });
+    }
+
+    res.json({ success: true, kezeles });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Hiba történt a kezelés lekérésekor." });
+  }
+});
+
 
 // Teszt
 app.get("/", (req, res) => {

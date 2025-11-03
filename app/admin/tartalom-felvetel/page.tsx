@@ -11,6 +11,7 @@ export default function TartalomFelvetel() {
   const [file, setFile] = useState<File | null>(null);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
+  const [htmlPreview, setHtmlPreview] = useState(""); // 🔥 ide jön az előnézet
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -41,8 +42,10 @@ export default function TartalomFelvetel() {
       });
 
       const data = await res.json();
+
       if (data.success) {
         setSuccess(true);
+        setHtmlPreview(data.kezes.tartalom); // 🔥 mutassuk meg a formázott HTML-t
         setCim("");
         setSlug("");
         setAr("");
@@ -56,10 +59,11 @@ export default function TartalomFelvetel() {
     }
   };
 
-  if (!token) return <div className="p-8">Jelentkezz be az admin felülethez!</div>;
+  if (!token)
+    return <div className="p-8">Jelentkezz be az admin felülethez!</div>;
 
   return (
-    <div className="max-w-md mx-auto mt-20 p-6 border border-gray-200 rounded-xl shadow-md bg-white">
+    <div className="max-w-3xl mx-auto mt-20 p-6 border border-gray-200 rounded-xl shadow-md bg-white">
       <Link
         href="/admin/dashboard"
         className="inline-block px-4 py-2 mb-4 text-gray-700 rounded hover:bg-gray-100 transition"
@@ -67,12 +71,20 @@ export default function TartalomFelvetel() {
         ← Vissza a dashboardra
       </Link>
 
-      <h2 className="text-2xl font-bold mb-4 text-center text-gray-700">Új kezelés felvétele</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center text-gray-700">
+        Új kezelés felvétele
+      </h2>
 
-      {success && <p className="text-green-600 mb-3 text-center font-medium">Sikeresen feltöltve!</p>}
-      {error && <p className="text-red-500 mb-3 text-center font-medium">{error}</p>}
+      {success && (
+        <p className="text-green-600 mb-3 text-center font-medium">
+          ✅ Sikeresen feltöltve!
+        </p>
+      )}
+      {error && (
+        <p className="text-red-500 mb-3 text-center font-medium">{error}</p>
+      )}
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3 mb-6">
         <input
           type="text"
           placeholder="Kezelés neve"
@@ -107,6 +119,16 @@ export default function TartalomFelvetel() {
           Feltöltés
         </button>
       </form>
+
+      {htmlPreview && (
+        <div>
+          <h3 className="text-xl font-semibold mb-2 text-gray-700">Előnézet:</h3>
+          <div
+            className="prose prose-lg max-w-none border rounded-lg p-4 bg-gray-50"
+            dangerouslySetInnerHTML={{ __html: htmlPreview }}
+          />
+        </div>
+      )}
     </div>
   );
 }
