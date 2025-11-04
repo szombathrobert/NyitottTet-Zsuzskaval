@@ -70,50 +70,80 @@ function verifyToken(req, res, next) {
 // Új kezelés feltöltése (Word)
 app.post("/admin/kezelesek", verifyToken, upload.single("file"), async (req, res) => {
   try {
-    const { cim, slug, ar } = req.body;
+    const { cim, slug, shortDescription, ar } = req.body;
     const filePath = req.file.path;
 
-    // 1️⃣ Word -> HTML
+    // 1️⃣ Word -> HTML konverzió
     const result = await mammoth.convertToHtml({ path: filePath });
-    let html = result.value; // ez már HTML
+    let html = result.value;
 
-    // 2️⃣ HTML feldolgozása: címek és bekezdések
+    // 2️⃣ HTML feldolgozás cheerio-val
     const $ = cheerio.load(html);
 
-    $('p').each((i, el) => {
-      const style = $(el).attr('style') || '';
+    $("p, h2, ul").each((i, el) => {
+    const tag = el.tagName.toLowerCase();
+    const text = $(el).text().trim();
+    const style = $(el).attr("style") || "";
 
-      // Nagyobb, félkövér szöveg -> h2
-      if (style.includes('font-size: 28px') || style.includes('font-weight: bold')) {
-        $(el).replaceWith(`<h2 class="text-4xl font-bold">${$(el).html()}</h2>`);
-      } else {
-        // Normál p, 2xl méret
-        $(el).replaceWith(`<p class="text-2xl">${$(el).html()}</p>`);
-      }
+    // 🔹 Ha UL – formázd listának
+    if (tag === "ul") {
+      $(el).attr("class", "text-2xl leading-relaxed mt-4 mb-3 list-disc list-inside");
+      $(el).find("li").each((_, li) => {
+        $(li).addClass("mb-2");
+      });
+    }
+
+    // 🔹 Ha kérdés vagy kérdőjeles mondat => H2 nagy betűkkel
+    else if (text.endsWith("?") || text.match(/[A-ZÁÉÍÓÖŐÚÜŰ].*\?/)) {
+      $(el).replaceWith(`<h2 class="text-4xl font-bold mt-4 mb-4">${$(el).html()}</h2><br>`);
+    }
+
+    // 🔹 Ha félkövér vagy csupa nagy => H2 formázott
+    else if (style.includes("font-weight: bold") || text === text.toUpperCase()) {
+      $(el).replaceWith(`<h2 class="text-4xl font-bold mt-4 mb-4">${$(el).html()}</h2><br>`);
+    }
+
+    // 🔹 Ha már H2 volt, de nincs rajta class, akkor is adj neki
+    else if (tag === "h2" && !$(el).attr("class")) {
+      $(el).attr("class", "text-4xl font-bold mt-4 mb-4");
+    }
+
+    // 🔹 Minden más marad normál bekezdés
+    else if (tag === "p") {
+      $(el).replaceWith(`<p class="text-2xl leading-relaxed mt-4 mb-3">${$(el).html()}</p><br>`);
+    }
+  });
+
+    // 🔸 UL elemek formázása és <br> beszúrása
+    $("ul").each((i, el) => {
+      $(el)
+        .addClass("text-2xl leading-relaxed mt-4 mb-3 list-disc list-inside")
+        .after("<br>");
     });
 
-    // H2 után 2 <br> beszúrása
-      $('h2').each((i, el) => {
-        $(el).after('<br><br>');
-      });
+    // 🔸 LI elemek közti tér
+    $("ul li").each((i, el) => {
+      $(el).addClass("mb-2");
+    });
 
-    // 3️⃣ Eredmény
+    // 3️⃣ Végleges HTML
     const tartalom = $.html();
 
-    // 4️⃣ Mentés a DB-be
+    // 4️⃣ Mentés adatbázisba
     const newKezeles = await prisma.kezeles.create({
-      data: { cim, slug, ar, tartalom },
+      data: { cim, slug, shortDescription, ar, tartalom },
     });
 
-    // 5️⃣ Fájl törlése
+    // 5️⃣ Feltöltött fájl törlése
     fs.unlinkSync(filePath);
 
     res.json({ success: true, kezes: newKezeles });
   } catch (err) {
-    console.error(err);
+    console.error("❌ Feltöltési hiba:", err);
     res.status(500).json({ error: "Hiba történt a kezelés felvételekor" });
   }
 });
+
 
 // Kezelések listázása
 app.get("/admin/kezelesek", verifyToken, async (req, res) => {
@@ -143,12 +173,12 @@ app.get("/admin/kezelesek/:id", verifyToken, async (req, res) => {
 // Kezelés frissítése
 app.put("/admin/kezelesek/:id", verifyToken, async (req, res) => {
   const { id } = req.params;
-  const { cim, slug, ar, tartalom } = req.body;
+  const { cim, slug, shortDescription, ar, tartalom } = req.body;
 
   try {
     const updated = await prisma.kezeles.update({
       where: { id: Number(id) },
-      data: { cim, slug, ar, tartalom },
+      data: { cim, slug, shortDescription, ar, tartalom },
     });
     res.json({ success: true, kezes: updated });
   } catch (err) {
@@ -184,6 +214,26 @@ app.get("/admin/kezelesek/slug/:slug", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Hiba történt a kezelés lekérésekor." });
+  }
+});
+
+app.get("/kezelesek", async (req, res) => {
+  try {
+    const kezelések = await prisma.kezeles.findMany({
+      select: {
+        id: true,
+        cim: true,
+        slug: true,
+        ar: true,
+        kepUrl: true,
+        shortDescription: true,
+      },
+      orderBy: { id: "desc" },
+    });
+    res.json(kezelések);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Nem sikerült lekérni a kezeléseket" });
   }
 });
 
