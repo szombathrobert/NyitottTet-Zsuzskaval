@@ -9,6 +9,8 @@ import Underline from "@tiptap/extension-underline";
 import BulletList from "@tiptap/extension-bullet-list";
 import OrderedList from "@tiptap/extension-ordered-list";
 import ListItem from "@tiptap/extension-list-item";
+import Link from "next/link";
+import { useAdminAuth } from "../../hook/useAdminAuth";
 
 interface Kezeles {
   id: number;
@@ -111,10 +113,18 @@ export default function EditorPage() {
     }
   };
 
+  if (!token) return null; // ide nem jut el, mert a hook átirányít
+
   if (loading || !editor) return <div className="p-8">Betöltés...</div>;
 
   return (
     <div className="p-8 max-w-3xl mx-auto">
+            <Link
+        href="/admin/dashboard"
+        className="inline-block mb-6 px-5 py-2 hover:bg-gray-300 rounded-lg transition mt-15"
+      >
+        ← Vissza a dashboardra
+      </Link>
       <h1 className="text-2xl font-bold mb-4">Kezelés szerkesztése</h1>
 
       <input

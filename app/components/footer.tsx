@@ -5,7 +5,7 @@ import { FaEnvelope, FaPhone, FaInstagram, FaMapMarkerAlt } from "react-icons/fa
 
 const Footer = () => {
   return (
-    <footer className="bg-[#FDF7E4] shadow-lg border-t border-gray-500">
+    <footer className="shadow-lg border-t border-gray-500">
       <div className="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
         {/* Bal oldal – logó és copyright */}
         <div className="flex flex-col items-center md:items-start text-gray-600">

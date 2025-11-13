@@ -1,20 +1,35 @@
-import fs from "fs";
-import path from "path";
+"use client";
 
-interface PriceItem {
+import { useEffect, useState } from "react";
+
+interface Kezeles {
   id: number;
-  category: string;
-  title: string;
-  price: string;
+  cim: string;
+  ar?: string;
 }
 
-export default function PricesPage() {
-  const filePath = path.join(process.cwd(), "public/data/prices.json");
-  const fileContent = fs.readFileSync(filePath, "utf-8");
-  const prices: PriceItem[] = JSON.parse(fileContent);
+export default function ArakPage() {
+  const [kezelesek, setKezelesek] = useState<Kezeles[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // Kategóriák egyedileg
-  const categories = [...new Set(prices.map((item) => item.category))];
+  useEffect(() => {
+    // Publikus végpont token nélkül
+    const fetchData = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/kezelesek");
+        if (!res.ok) throw new Error("Hálózati hiba");
+        const data: Kezeles[] = await res.json();
+        setKezelesek(data);
+      } catch (err) {
+        console.error(err);
+        setKezelesek([]); // ha hiba van, üres tömb
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-16 mt-20">
@@ -22,33 +37,40 @@ export default function PricesPage() {
         Árak
       </h1>
 
-      {categories.map((category) => (
-        <div key={`category-${category}`} className="mb-16">
-          <h2 className="text-3xl font-semibold text-pink-600 mb-8 border-b-2 border-pink-200 pb-2">
-            {category}
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {prices
-              .filter((item) => item.category === category)
-              .map((item) => (
-                <div
-                  key={`price-${item.id}-${item.title}`}
-                  className="bg-white/60 backdrop-blur-sm border border-pink-100 shadow-md rounded-2xl p-6 transition hover:shadow-lg hover:bg-white/80"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-2xl font-semibold text-gray-800">
-                      {item.title}
-                    </h3>
-                    <span className="text-lg font-bold text-pink-600">
-                      {item.price}
-                    </span>
-                  </div>
-                </div>
-              ))}
-          </div>
+      {loading ? (
+        <div className="grid md:grid-cols-2 gap-8">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div
+              key={i}
+              className="bg-white/30 border border-pink-100 rounded-2xl p-6 shadow-md animate-pulse"
+            >
+              <div className="h-6 w-3/4 bg-gray-300 mb-4 rounded"></div>
+              <div className="h-4 w-1/4 bg-gray-300 rounded"></div>
+            </div>
+          ))}
         </div>
-      ))}
+      ) : kezelesek.length === 0 ? (
+        <p className="text-center text-gray-500 text-xl">Nincs megjeleníthető kezelés</p>
+      ) : (
+        <div className="grid md:grid-cols-2 gap-8">
+          {kezelesek.map((k, idx) => (
+            <div
+              key={k.id}
+              className="bg-white/70 border border-pink-100 rounded-2xl p-6 shadow-md hover:shadow-lg transition duration-500 opacity-0 animate-fade-in"
+              style={{ animationDelay: `${idx * 100}ms` }}
+            >
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-2xl font-semibold text-gray-800">{k.cim}</h3>
+                {k.ar && (
+                  <span className="text-lg font-bold text-pink-600">
+                    {k.ar} Ft
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

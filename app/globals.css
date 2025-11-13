@@ -11,7 +11,7 @@
 
 /* Alap háttér + szöveg */
 body {
-  background-color: #FDF7E4;
+  background-color: #CBCBCB;
   color: #333;
   list-style: none; /* Itt tiltjuk le alapból a bulletöket */
 }
@@ -29,4 +29,29 @@ ul {
 .prose ul {
   list-style-type: disc;
   margin-left: 1.5rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s forwards;
+}
+
+
+@keyframes fadeCard {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fadeCard {
+  animation: fadeCard 0.7s ease-out forwards;
 }

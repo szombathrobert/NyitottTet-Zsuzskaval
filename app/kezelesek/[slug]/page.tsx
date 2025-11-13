@@ -58,6 +58,11 @@ export default function KezelesPage() {
         {kezeles.cim}
       </h1>
 
+      <div
+        className="prose prose-lg max-w-none text-gray-700 whitespace-pre-line"
+        dangerouslySetInnerHTML={{ __html: kezeles.tartalom }}
+      />
+      
       {/* ha később lesz kép */}
       {kezeles.kep && (
         <div className="w-full h-80 md:h-[500px] relative mb-8 rounded-3xl overflow-hidden">
@@ -65,17 +70,14 @@ export default function KezelesPage() {
             src={kezeles.kep}
             alt={kezeles.cim}
             fill
-            sizes="100vw"
+            sizes="50vw"
             className="object-cover"
             priority
           />
         </div>
       )}
-
-      <div
-        className="prose prose-lg max-w-none text-gray-700 whitespace-pre-line"
-        dangerouslySetInnerHTML={{ __html: kezeles.tartalom }}
-      />
     </div>
+
+
   );
 }

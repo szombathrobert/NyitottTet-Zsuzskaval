@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 
 interface Review {
+  id: number;
   name: string;
   text: string;
   date: string;
@@ -13,15 +14,16 @@ interface Review {
 export default function ReviewSection() {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [current, setCurrent] = useState(0);
+  const [loading, setLoading] = useState(true);
 
-  // JSON beolvasása
   useEffect(() => {
-    fetch("/data/reviews.json")
+    fetch("http://localhost:5000/reviews")
       .then((res) => res.json())
-      .then((data) => setReviews(data));
+      .then((data) => setReviews(data))
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
   }, []);
 
-  // Automatikus váltás 6 másodpercenként
   useEffect(() => {
     if (reviews.length === 0) return;
     const interval = setInterval(() => {
@@ -30,16 +32,24 @@ export default function ReviewSection() {
     return () => clearInterval(interval);
   }, [reviews]);
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center py-20">
+        <div className="w-12 h-12 border-4 border-pink-300 border-t-pink-500 rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
   if (reviews.length === 0) return null;
 
   const review = reviews[current];
 
   return (
-    <section className="w-full bg-[#FDF7E4] py-16 mt-20 shadow-inner">
+    <section className="w-full py-16 mt-20 shadow-inner">
       <div className="max-w-3xl mx-auto text-center px-6 relative">
         <AnimatePresence mode="wait">
           <motion.div
-            key={review.name + review.date}
+            key={review.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -61,7 +71,6 @@ export default function ReviewSection() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Manuális váltó gombok */}
         <div className="flex justify-center mt-6 space-x-2">
           {reviews.map((_, i) => (
             <button

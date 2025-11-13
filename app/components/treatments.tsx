@@ -13,12 +13,44 @@ interface Treatment {
 
 export default function Treatments() {
   const [treatments, setTreatments] = useState<Treatment[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("/data/treatments.json")
-    .then((res) => res.json())
-    .then((data) => setTreatments(data));
+    const fetchTreatments = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/kezelesek`, {
+          cache: "no-store",
+        });
+
+        if (!res.ok) throw new Error("Nem sikerült betölteni az adatokat");
+
+        const data = await res.json();
+
+        // Átalakítás, ha a backend más kulcsokat ad vissza
+        const mapped = data.map((item: any) => ({
+          id: item.id,
+          title: item.cim ?? item.title,
+          shortDescription: item.shortDescription ?? item.rovid_leiras ?? "",
+          img: item.img ?? "",
+          link: `/kezelesek/${item.slug}`,
+        }));
+
+        setTreatments(mapped);
+      } catch (err: any) {
+        setError(err.message);
+      }
+    };
+
+    fetchTreatments();
   }, []);
+
+  if (error) {
+    return (
+      <div className="text-center text-red-600 mt-20">
+        {error} 😢
+      </div>
+    );
+  }
 
   return (
     <section id="treatments" className="py-20 px-6">
@@ -34,24 +66,14 @@ export default function Treatments() {
               index % 2 === 1 ? "md:flex-row-reverse" : ""
             }`}
           >
-            {/* Kép */}
-            <div className="md:w-1/2 w-full flex justify-center">
-              <div className="relative w-100 h-50 md:h-70">
-                <Image
-                  src={treatment.img}
-                  alt={treatment.title}
-                  fill
-                  className="object-cover rounded-3xl shadow-md"
-                />
-              </div>
-            </div>
-
             {/* Szöveg */}
             <div className="md:w-1/2 w-full text-center md:text-left">
               <h3 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
                 {treatment.title}
               </h3>
-              <p className="text-gray-600 mb-6 text-xl md:text-2xl">{treatment.shortDescription}</p>
+              <p className="text-gray-600 mb-6 text-xl md:text-2xl">
+                {treatment.shortDescription}
+              </p>
               <Link
                 href={treatment.link}
                 className="bg-[#A0937D] hover:bg-[#8a836e] text-white px-5 py-2 rounded-xl transition text-xl md:text-xl"
