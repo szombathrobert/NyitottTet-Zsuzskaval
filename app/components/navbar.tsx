@@ -80,6 +80,7 @@ export default function Navbar() {
               </button>
 
               <Link href="/arak" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Árak</Link>
+              <Link href="/galeria" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Galéria</Link>
               <Link href="/kapcsolat" className="text-2xl text-gray-700 hover:text-indigo-600 transition-colors">Kapcsolat</Link>
             </div>
           </div>
@@ -233,6 +234,7 @@ export default function Navbar() {
               </div>
 
               <Link href="/arak" className="block text-gray-700 hover:text-indigo-600" onClick={handleLinkClick}>Árak</Link>
+              <Link href="/galeria" className="block text-gray-700 hover:text-indigo-600" onClick={handleLinkClick}>Galéria</Link>
               <Link href="/kapcsolat" className="block text-gray-700 hover:text-indigo-600" onClick={handleLinkClick}>Kapcsolat</Link>
             </motion.div>
           )}

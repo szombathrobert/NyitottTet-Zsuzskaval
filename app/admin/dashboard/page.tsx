@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { FaSignOutAlt, FaEdit, FaTags, FaCommentDots, FaCalendarAlt, FaCogs, FaUpload } from "react-icons/fa";
+import { FaSignOutAlt, FaEdit, FaTags, FaCommentDots, FaCalendarAlt, FaCogs, FaUpload, FaImages } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function AdminDashboard() {
@@ -64,6 +64,12 @@ if (!token) return null; // ide nem jut el, mert a hook átirányít
       icon: <FaUpload className="text-yellow-500 text-4xl mb-4" />,
       onClick: () => router.push("/admin/kep_feltoltes"),
     },
+    {
+      title: "Galéria",
+      desc: "Galériában lévő képek szerkesztése és új hozzáadása",
+      icon: <FaImages className="text-yellow-500 text-4xl mb-4" />,
+      onClick: () => router.push("/admin/galeria"),
+    }
   ];
 
   return (

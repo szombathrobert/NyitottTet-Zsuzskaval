@@ -54,7 +54,7 @@ export default function NewEventPage() {
     <div className="p-8 max-w-2xl mx-auto mt-16">
       <Link
             href="/admin/events"
-            className="inline-block px-6 py-3 text-gray-800 rounded-lg transition-colors"
+            className="inline-block mb-6 px-5 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition"
         >
             ← Vissza az eseményekhez
       </Link>

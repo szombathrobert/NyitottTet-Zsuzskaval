@@ -22,7 +22,7 @@ export default function NewReviewPage() {
 
       {!loading && token && (
         <>
-          <Link href="/admin/reviews" className="inline-block mb-4 text-gray-600 hover:underline">
+          <Link href="/admin/reviews" className="inline-block mb-6 px-5 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition">
             ← Vissza a véleményekhez
           </Link>
 
@@ -54,14 +54,14 @@ export default function NewReviewPage() {
               placeholder="Név"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full p-2 border rounded focus:ring-2 focus:ring-pink-400"
+              className="w-full p-2 border rounded focus:ring-2 focus:ring-pink-400 text-3xl md:text-4xl"
               required
             />
             <textarea
               placeholder="Vélemény"
               value={text}
               onChange={(e) => setText(e.target.value)}
-              className="w-full p-2 border rounded focus:ring-2 focus:ring-pink-400"
+              className="w-full p-2 border rounded focus:ring-2 focus:ring-pink-400 text-3xl md:text-4xl"
               rows={4}
               required
             />
@@ -69,14 +69,14 @@ export default function NewReviewPage() {
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="w-full p-2 border rounded focus:ring-2 focus:ring-pink-400"
+              className="w-full p-2 border rounded focus:ring-2 focus:ring-pink-400 text-3xl md:text-4xl"
               required
             />
 
             <button
               type="submit"
               disabled={loadingSubmit}
-              className="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 transition"
+              className="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 transition text-3xl md:text-4xl"
             >
               {loadingSubmit ? "Mentés..." : "Mentés"}
             </button>

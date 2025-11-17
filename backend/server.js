@@ -391,11 +391,21 @@ app.get("/admin/events/:id", verifyToken, async (req, res) => {
 
 // Új esemény
 app.post("/admin/events", verifyToken, async (req, res) => {
-  const { title, description, date, imageUrl } = req.body;
+  const { title, description, date } = req.body;
+
   try {
-    const newEvent = await prisma.event.create({ data: { title, description, date: new Date(date), imageUrl } });
+    if (!title || !description || !date) {
+      return res.status(400).json({ success: false, error: "Hiányzó mező(k)!" });
+    }
+
+    const eventDate = new Date(date + "T00:00:00Z");
+    const newEvent = await prisma.event.create({
+      data: { title, description, date: eventDate }
+    });
+
     res.json({ success: true, event: newEvent });
   } catch (err) {
+    console.error("POST /admin/events hiba:", err);
     res.status(500).json({ success: false, error: err.message });
   }
 });
@@ -426,6 +436,85 @@ app.delete("/admin/events/:id", verifyToken, async (req, res) => {
   }
 });
 
+//Galéria rész
+app.get("/admin/galeria", verifyToken, async (req, res) => {
+  try {
+    const kepek = await prisma.galeria.findMany({
+      orderBy: { id: "desc" }
+    });
+
+    res.json({ success: true, kepek });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, error: "Hiba a lekérdezésnél" });
+  }
+});
+
+app.get("/galeria", async (req, res) => {
+  try {
+    const images = await prisma.galeria.findMany({
+      select: { url: true }
+    });
+
+    res.json({ success: true, kepek: images.map(i => i.url) });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, error: "Hiba történt" });
+  }
+});
+
+app.delete("/admin/galeria/:id", verifyToken, async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+
+    const kep = await prisma.galeria.findUnique({ where: { id } });
+    if (!kep) return res.status(404).json({ success: false, error: "Kép nem található" });
+
+    // Cloudinary törlés
+    await cloudinary.uploader.destroy(kep.publicId);
+
+    // DB törlés
+    await prisma.galeria.delete({ where: { id } });
+
+    res.json({ success: true, message: "Kép törölve" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, error: "Hiba történt a törlés során" });
+  }
+});
+
+app.post(
+  "/admin/galeria-upload",
+  verifyToken,
+  uploadCloud.single("image"),
+  async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ success: false, error: "Nincs kép feltöltve!" });
+      }
+
+      const imageUrl = req.file.path;
+      const publicId = req.file.filename;  // <-- multer-storage-cloudinary ezt adja
+
+      const newImage = await prisma.galeria.create({
+        data: {
+          url: imageUrl,
+          publicId: publicId
+        }
+      });
+
+      res.json({
+        success: true,
+        message: "Kép feltöltve!",
+        url: imageUrl,
+        kep: newImage,
+      });
+    } catch (err) {
+      console.error("Galéria kép mentési hiba:", err);
+      res.status(500).json({ success: false, error: "Hiba történt" });
+    }
+  }
+);
 
 // Teszt
 app.get("/", (req, res) => {

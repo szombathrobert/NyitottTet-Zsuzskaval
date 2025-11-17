@@ -44,6 +44,12 @@ model Admin {
   createdAt DateTime @default(now())
 }
 
+model Galeria {
+  id          Int       @id @default(autoincrement())
+  url         String
+  publicId    String?
+  createdAt   DateTime  @default(now())
+}
 
 model Kep {
   id          Int      @id @default(autoincrement())

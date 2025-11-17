@@ -31,7 +31,7 @@ export default function EditEventPage() {
     <div className="max-w-3xl mx-auto p-6 mt-20 bg-white rounded-2xl shadow-lg">
         <Link
             href="/admin/events"
-            className="inline-block px-6 py-3 text-gray-800 rounded-lg transition-colors"
+            className="inline-block mb-6 px-5 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition"
         >
             ← Vissza az eseményekhez
       </Link>

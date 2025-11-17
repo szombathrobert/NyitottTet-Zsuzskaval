@@ -118,10 +118,10 @@ export default function EditorPage() {
   if (loading || !editor) return <div className="p-8">Betöltés...</div>;
 
   return (
-    <div className="p-8 max-w-3xl mx-auto">
+    <div className="p-8 max-w-3xl mx-auto mt-15">
             <Link
         href="/admin/dashboard"
-        className="inline-block mb-6 px-5 py-2 hover:bg-gray-300 rounded-lg transition mt-15"
+        className="inline-block mb-6 px-5 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition"
       >
         ← Vissza a dashboardra
       </Link>

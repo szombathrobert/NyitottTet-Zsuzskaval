@@ -63,7 +63,7 @@ export default function CloudinaryUpload() {
     <div className="max-w-xl mx-auto mt-20 p-6 bg-white shadow-lg rounded-xl flex flex-col gap-6">
       <Link
         href="/admin/dashboard"
-        className="inline-block px-6 py-3 text-gray-800 rounded-lg transition-colors"
+        className="inline-block mb-6 px-5 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition"
       >
         ← Vissza a dashboardra
       </Link>
