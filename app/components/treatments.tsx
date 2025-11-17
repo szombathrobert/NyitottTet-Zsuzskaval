@@ -26,7 +26,6 @@ export default function Treatments() {
 
         const data = await res.json();
 
-        // Átalakítás, ha a backend más kulcsokat ad vissza
         const mapped = data.map((item: any) => ({
           id: item.id,
           title: item.cim ?? item.title,
@@ -34,6 +33,9 @@ export default function Treatments() {
           img: item.img ?? "",
           link: `/kezelesek/${item.slug}`,
         }));
+
+        // ABC sorrendbe rendezés a title alapján
+        mapped.sort((a, b) => a.title.localeCompare(b.title));
 
         setTreatments(mapped);
       } catch (err: any) {
