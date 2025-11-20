@@ -1,4 +1,4 @@
-import { defineConfig, env } from "@prisma/client";
+import { defineConfig, env } from "prisma";
 import 'dotenv/config';
 
 export default defineConfig({
