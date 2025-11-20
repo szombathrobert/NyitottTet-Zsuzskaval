@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  const hashed = await bcrypt.hash("NyitottTerZsuzskaval1234", 10);
+  const hashed = await bcrypt.hash("NyitottTerZsuzskaval0727", 10);
 
   const admin = await prisma.admin.create({
     data: {

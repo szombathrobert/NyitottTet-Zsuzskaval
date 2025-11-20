@@ -516,11 +516,19 @@ app.post(
   }
 );
 
-// Teszt
 app.get("/", (req, res) => {
-  res.send("✅ Backend fut és működik!");
+  res.send("🚀 Backend fut Passenger alatt!");
 });
 
-// Szerver indítása
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Szerver elindult: http://localhost:${PORT}`));
+const PORT = process.env.PORT || 3000;
+
+// Ha Passenger fut, nem hívunk app.listen-t, csak exportáljuk az app-ot
+// → Passenger automatikusan elindítja
+if (process.env.PASSENGER_APP_ENV) {
+  module.exports = app;
+} else {
+  // Lokális fejlesztés esetén működjön normál listen()
+  app.listen(PORT, () => {
+    console.log(`⭐ Lokalisan fut: http://localhost:${PORT}`);
+  });
+}

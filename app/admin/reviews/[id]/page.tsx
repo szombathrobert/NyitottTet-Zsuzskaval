@@ -5,7 +5,8 @@ import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
 
 export default function EditReviewPage() {
-  const { id } = useParams();
+  const params = useParams();
+  const id = Array.isArray(params.id) ? params.id[0] : params.id;
   const router = useRouter();
   const [name, setName] = useState("");
   const [text, setText] = useState("");
@@ -23,7 +24,7 @@ export default function EditReviewPage() {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
-        const review = data.find((r: any) => r.id === parseInt(id));
+        const review = data.find((r: any) => r.id === parseInt(id as string));
         if (!review) {
           alert("Vélemény nem található!");
           router.push("/admin/reviews");

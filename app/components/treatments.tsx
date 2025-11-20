@@ -26,7 +26,7 @@ export default function Treatments() {
 
         const data = await res.json();
 
-        const mapped = data.map((item: any) => ({
+        const mapped: Treatment[] = data.map((item: any) => ({
           id: item.id,
           title: item.cim ?? item.title,
           shortDescription: item.shortDescription ?? item.rovid_leiras ?? "",
@@ -35,7 +35,7 @@ export default function Treatments() {
         }));
 
         // ABC sorrendbe rendezés a title alapján
-        mapped.sort((a, b) => a.title.localeCompare(b.title));
+       mapped.sort((a, b) => a.title.localeCompare(b.title));
 
         setTreatments(mapped);
       } catch (err: any) {
